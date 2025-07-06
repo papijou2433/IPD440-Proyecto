@@ -24,7 +24,8 @@ module Conv_1_FSM(
     input logic data_rdy,
     input logic [7:0] input_tensor [0:7] [0:7],
 
-    output logic [2:0] dir,
+    output logic [1:0] dir,
+    output logic [5:0] dir_counter,
     output logic data_done,
     output logic [7:0] out_matrix [0:2] [0:2]
     );
@@ -38,25 +39,30 @@ module Conv_1_FSM(
 
     state_t state, next_state;
 
-    logic [5:0] dir_counter, dir_counter_next; 
+    logic [5:0] dir_counter_next; 
 
     logic [7:0] padded_matrix [0:9][0:9];
     genvar i,j;
     generate
-        // Zero out the top and bottom rows
-        for (i = 0; i < 10; i++) begin
-            always_comb begin : Row_zero
-                padded_matrix[0][i] = 0;
-                padded_matrix[9][i] = 0;
-            end 
-        end
-
         // Zero out the left and right columns
         for (i = 1; i < 9; i++) begin
             always_comb begin : Columns_zero
-                padded_matrix[i][0] = 0;
-                padded_matrix[i][9] = 0;
+                padded_matrix[i][0] = input_tensor[i-1][0];
+                padded_matrix[i][9] = input_tensor[i-1][7];
             end
+        end
+        always_comb begin
+            padded_matrix[0][0] = input_tensor[0][0];
+            padded_matrix[0][9] = input_tensor[0][7];
+            padded_matrix[9][0] = input_tensor[0][0];
+            padded_matrix[9][9] = input_tensor[0][7];
+        end
+        // Zero out the top and bottom rows
+        for (i = 1; i < 9; i++) begin
+            always_comb begin : Row_zero
+                padded_matrix[0][i] = input_tensor[0][i-1];
+                padded_matrix[9][i] =  input_tensor[7][i-1];
+            end 
         end
 
         // Fill the center from input_tensor
@@ -71,18 +77,7 @@ module Conv_1_FSM(
     endgenerate
 
 
-    // always_comb begin 
-    //     integer i,j;
-    //     out_matrix[0][0] = padded_matrix[dir_counter[5:3]][dir_counter[2:0]]; 
-    //     out_matrix[0][1] = padded_matrix[dir_counter[5:3]][dir_counter[2:0]+1]; 
-    //     out_matrix[0][2] = padded_matrix[dir_counter[5:3]][dir_counter[2:0]+2]; 
-    //     out_matrix[1][0] = padded_matrix[dir_counter[5:3]+1][dir_counter[2:0]]; 
-    //     out_matrix[1][1] = padded_matrix[dir_counter[5:3]+1][dir_counter[2:0]+1]; 
-    //     out_matrix[1][2] = padded_matrix[dir_counter[5:3]+1][dir_counter[2:0]+2]; 
-    //     out_matrix[2][0] = padded_matrix[dir_counter[5:3]+2][dir_counter[2:0]]; 
-    //     out_matrix[2][1] = padded_matrix[dir_counter[5:3]+2][dir_counter[2:0]+1]; 
-    //     out_matrix[2][2] = padded_matrix[dir_counter[5:3]+2][dir_counter[2:0]+2];  
-    // end
+
 
     generate
         for (i = 0; i < 3; i++) begin

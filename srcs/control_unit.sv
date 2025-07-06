@@ -1,132 +1,127 @@
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 06/07/2025 08:56:29 PM
-// Design Name: 
-// Module Name: control_unit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 module control_unit(
-    input logic clk,reset,
+    input logic clk, reset,
     input logic busy,
     input logic data_done,
-    output logic enable_a,enable_b,
+    output logic enable_a, enable_b,
     output logic data_rdy,
-    output logic [5:0]dir_A,
-    output logic [7:0]dir_B
-    );
+    output logic [5:0] dir_A,
+    output logic [5:0] dir_A_buff,
+    output logic [7:0] dir_B
+);
 
+    // Agregamos el estado MEM
+    enum {IDLE, READ, MEM, WAIT, WRITE} state, next_state;
 
-    enum {IDLE,READ,WAIT,WRITE} state,next_state;
-    logic [5:0]dir_A_next;
-    logic [7:0]dir_B_next;
+    logic [5:0] dir_A_next;
+    logic [7:0] dir_B_next;
 
+    logic [5:0] dir_A_buffn;
 
-    // bloque secuencial 
-    always_ff @( posedge clk ) begin 
-        if(reset) begin
-            state<=IDLE;
-            dir_A<=0;
-            dir_B<=0;
-        end else
-        begin
-            state<=next_state;
-            dir_A<=dir_A_next;
-            dir_B<=dir_B_next;  
+    // Contador para MEM (2 ciclos)
+    logic [1:0] mem_counter, mem_counter_next;
+
+    // Bloque secuencial
+    always_ff @(posedge clk) begin
+        if (reset) begin
+            state <= IDLE;
+            dir_A <= 0;
+            dir_B <= 0;
+            dir_A_buffn <= 0;
+            dir_A_buff <= 0;
+            mem_counter <= 0;
+        end else begin
+            state <= next_state;
+            dir_A_buff <= dir_A_buffn;
+            dir_A_buffn <= dir_A;
+            dir_A <= dir_A_next;
+            dir_B <= dir_B_next;
+            mem_counter <= mem_counter_next;
         end
     end
 
-    //bloque de salidas
+    // Bloque de salidas
     always_comb begin
-        case(state) 
+        // Defaults
+        dir_A_next = dir_A;
+        dir_B_next = dir_B;
+        enable_a = 0;
+        enable_b = 0;
+        data_rdy = 0;
+        mem_counter_next = mem_counter;
+
+        case (state)
             IDLE: begin
-                dir_A_next=0;
-                dir_B_next=0;
-                enable_a=0;
-                enable_b=0;
-                data_rdy=0;
+                dir_A_next = 0;
+                dir_B_next = 0;
             end
-            READ:begin
-                dir_A_next=dir_A+1;
-                dir_B_next=0;
-                enable_a=1;
-                enable_b=0;
-                data_rdy=0;
+
+            READ: begin
+                dir_A_next = dir_A + 1;
+                dir_B_next = 0;
+                enable_a = 1;
             end
-            WAIT:begin
-                dir_A_next=0;
-                dir_B_next=0;
-                enable_a=0;
-                enable_b=0;
-                data_rdy=1;
+
+            MEM: begin
+                enable_a = 0;  // o dejarlo igual a READ si se desea mantener enable_a en alto
+                mem_counter_next = mem_counter + 1;
             end
-            WRITE:begin
-                dir_A_next=0;
-                dir_B_next=dir_B+1;
-                enable_a=0;
-                enable_b=1;
-                data_rdy=0;
+
+            WAIT: begin
+                dir_A_next = 0;
+                dir_B_next = 0;
+                data_rdy = 1;
             end
-            default: begin
-                dir_A_next=0;
-                dir_B_next=0;
-                enable_a=0;
-                enable_b=0;
-                data_rdy=0;
+
+            WRITE: begin
+                dir_A_next = 0;
+                dir_B_next = dir_B + 1;
+                enable_b = 1;
             end
         endcase
     end
 
-    //bloque de transiciones
+    // Bloque de transiciones
     always_comb begin
-        case(state) 
+        next_state = state; // Default
+
+        case (state)
             IDLE: begin
-                if(busy)begin
-                    next_state=IDLE;
-                end else begin
-                    next_state=READ;
-                end
+                if (busy)
+                    next_state = IDLE;
+                else
+                    next_state = READ;
             end
-            READ:begin
-                if(dir_A==63)begin
-                    next_state=WAIT;
-                end else begin
-                    next_state=READ;
-                end
+
+            READ: begin
+                if (dir_A == 63)
+                    next_state = MEM;
+                else
+                    next_state = READ;
             end
-            WAIT:begin
-                if(data_done)begin
-                    next_state=WRITE;
-                end else begin
-                    next_state=WAIT;
-                end
+
+            MEM: begin
+                if (mem_counter == 2)
+                    next_state = WAIT;
+                else
+                    next_state = MEM;
             end
-            WRITE:begin
-                if(dir_B==192)begin
-                    next_state=WAIT;
-                end else begin
-                    next_state=IDLE;
-                end
+
+            WAIT: begin
+                if (data_done)
+                    next_state = WRITE;
+                else
+                    next_state = WAIT;
             end
-            default: begin
-                next_state=IDLE;
+
+            WRITE: begin
+                if (dir_B == 192)
+                    next_state = WAIT;
+                else
+                    next_state = IDLE;
             end
+
+            default: next_state = IDLE;
         endcase
     end
-
 
 endmodule
