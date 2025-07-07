@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="etapa1contodo_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="etapa1contodo" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="9,434.583 ns"></ZoomStartTime>
+      <ZoomEndTime time="9,806.084 ns"></ZoomEndTime>
+      <Cursor1Time time="9,905.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="241"></NameColumnWidth>
+      <ValueColumnWidth column_width="443"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject type="logic" fp_name="/etapa1contodo/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/etapa1contodo/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group383">
+      <obj_property name="label">MemoriaA</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/BramA/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory">
+         <obj_property name="ElementShortName">memory[0:63][7:0]</obj_property>
+         <obj_property name="ObjectShortName">memory[0:63][7:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">7</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/BramA/doutb">
+         <obj_property name="ElementShortName">doutb[7:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/BramA/addrb">
+         <obj_property name="ElementShortName">addrb[5:0]</obj_property>
+         <obj_property name="ObjectShortName">addrb[5:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group452">
+      <obj_property name="label">MemoriaB</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/bramb/wea">
+         <obj_property name="ElementShortName">wea[0:0]</obj_property>
+         <obj_property name="ObjectShortName">wea[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/bramb/addra">
+         <obj_property name="ElementShortName">addra[7:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/bramb/dina">
+         <obj_property name="ElementShortName">dina[19:0]</obj_property>
+         <obj_property name="ObjectShortName">dina[19:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/bramb/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory">
+         <obj_property name="ElementShortName">memory[0:191][19:0]</obj_property>
+         <obj_property name="ObjectShortName">memory[0:191][19:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/dir_B">
+         <obj_property name="ElementShortName">dir_B[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_B[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group466">
+      <obj_property name="label">Control de flujo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/busy">
+         <obj_property name="ElementShortName">busy</obj_property>
+         <obj_property name="ObjectShortName">busy</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/data_done">
+         <obj_property name="ElementShortName">data_done</obj_property>
+         <obj_property name="ObjectShortName">data_done</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/enable_a">
+         <obj_property name="ElementShortName">enable_a</obj_property>
+         <obj_property name="ObjectShortName">enable_a</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/enable_b">
+         <obj_property name="ElementShortName">enable_b</obj_property>
+         <obj_property name="ObjectShortName">enable_b</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/data_rdy">
+         <obj_property name="ElementShortName">data_rdy</obj_property>
+         <obj_property name="ObjectShortName">data_rdy</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/dir_A">
+         <obj_property name="ElementShortName">dir_A[5:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_A[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/dir_A_buff">
+         <obj_property name="ElementShortName">dir_A_buff[5:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_A_buff[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/dir_B">
+         <obj_property name="ElementShortName">dir_B[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_B[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/state">
+         <obj_property name="ElementShortName">state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">state[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/next_state">
+         <obj_property name="ElementShortName">next_state[31:0]</obj_property>
+         <obj_property name="ObjectShortName">next_state[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/dir_A_next">
+         <obj_property name="ElementShortName">dir_A_next[5:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_A_next[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/control_unit_inst/dir_B_next">
+         <obj_property name="ElementShortName">dir_B_next[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_B_next[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/input_tensor">
+      <obj_property name="ElementShortName">input_tensor[0:7][0:7][7:0]</obj_property>
+      <obj_property name="ObjectShortName">input_tensor[0:7][0:7][7:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group497">
+      <obj_property name="label">Control de Calculo</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/reset">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/data_rdy">
+         <obj_property name="ElementShortName">data_rdy</obj_property>
+         <obj_property name="ObjectShortName">data_rdy</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/dir_A_buff">
+         <obj_property name="ElementShortName">dir_A_buff[5:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_A_buff[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/input_tensor">
+         <obj_property name="ElementShortName">input_tensor[0:7][0:7][7:0]</obj_property>
+         <obj_property name="ObjectShortName">input_tensor[0:7][0:7][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/padded_matrix">
+         <obj_property name="ElementShortName">padded_matrix[0:9][0:9][7:0]</obj_property>
+         <obj_property name="ObjectShortName">padded_matrix[0:9][0:9][7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/dir">
+         <obj_property name="ElementShortName">dir[1:0]</obj_property>
+         <obj_property name="ObjectShortName">dir[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/data_done">
+         <obj_property name="ElementShortName">data_done</obj_property>
+         <obj_property name="ObjectShortName">data_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/out_matrix">
+         <obj_property name="ElementShortName">out_matrix[0:2][0:2][7:0]</obj_property>
+         <obj_property name="ObjectShortName">out_matrix[0:2][0:2][7:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">7</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/out_matrix[0]">
+            <obj_property name="ElementShortName">[0][0:2][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][0:2][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/out_matrix[1]">
+            <obj_property name="ElementShortName">[1][0:2][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][0:2][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/out_matrix[2]">
+            <obj_property name="ElementShortName">[2][0:2][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][0:2][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/state">
+         <obj_property name="ElementShortName">state[2:0]</obj_property>
+         <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/Conv_1_FSM_inst/dir_counter">
+         <obj_property name="ElementShortName">dir_counter[5:0]</obj_property>
+         <obj_property name="ObjectShortName">dir_counter[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux">
+         <obj_property name="ElementShortName">filtro_mux[2:0][2:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">filtro_mux[2:0][2:0][7:0]</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[2]">
+            <obj_property name="ElementShortName">[2][2:0][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][2:0][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[2][2]">
+               <obj_property name="ElementShortName">[2][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[2][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[2][1]">
+               <obj_property name="ElementShortName">[1][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[1][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[2][0]">
+               <obj_property name="ElementShortName">[0][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[0][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[1]">
+            <obj_property name="ElementShortName">[1][2:0][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][2:0][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[1][2]">
+               <obj_property name="ElementShortName">[2][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[2][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[1][1]">
+               <obj_property name="ElementShortName">[1][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[1][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[1][0]">
+               <obj_property name="ElementShortName">[0][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[0][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[0]">
+            <obj_property name="ElementShortName">[0][2:0][7:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][2:0][7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[0][2]">
+               <obj_property name="ElementShortName">[2][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[2][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[0][1]">
+               <obj_property name="ElementShortName">[1][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[1][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+            <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/filtro_mux[0][0]">
+               <obj_property name="ElementShortName">[0][7:0]</obj_property>
+               <obj_property name="ObjectShortName">[0][7:0]</obj_property>
+               <obj_property name="Radix">REALRADIX</obj_property>
+               <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+               <obj_property name="radix_fractionWidth">7</obj_property>
+               <obj_property name="radix_otherWidth">0</obj_property>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado">
+         <obj_property name="ElementShortName">sumandos_resultado[8:0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">sumandos_resultado[8:0][15:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">16</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[8]">
+            <obj_property name="ElementShortName">[8][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[7]">
+            <obj_property name="ElementShortName">[7][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[6]">
+            <obj_property name="ElementShortName">[6][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[5]">
+            <obj_property name="ElementShortName">[5][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[4]">
+            <obj_property name="ElementShortName">[4][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[3]">
+            <obj_property name="ElementShortName">[3][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[2]">
+            <obj_property name="ElementShortName">[2][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[1]">
+            <obj_property name="ElementShortName">[1][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/sumandos_resultado[0]">
+            <obj_property name="ElementShortName">[0][15:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/resultado">
+         <obj_property name="ElementShortName">resultado[19:0]</obj_property>
+         <obj_property name="ObjectShortName">resultado[19:0]</obj_property>
+         <obj_property name="Radix">REALRADIX</obj_property>
+         <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+         <obj_property name="radix_fractionWidth">15</obj_property>
+         <obj_property name="radix_otherWidth">0</obj_property>
+      </wvobject>
+      <wvobject type="group" fp_name="group344">
+         <obj_property name="label">row 0 col 0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[0].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[0].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[0].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group345">
+         <obj_property name="label">row 1 col 0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[1].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[1].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[1].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group346">
+         <obj_property name="label">row 2 col 0</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[2].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[2].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[0].col[2].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group347">
+         <obj_property name="label">row 0 col 1</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[0].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[0].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[0].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group348">
+         <obj_property name="label">row 1 col 1</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[1].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[1].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[1].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group349">
+         <obj_property name="label">row 2 col 1</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[2].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[2].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[1].col[2].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group350">
+         <obj_property name="label">row 0 col 2</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[0].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[0].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[0].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group351">
+         <obj_property name="label">row 1 col 2</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[1].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[1].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[1].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group352">
+         <obj_property name="label">row 2 col 2</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[2].mult_inst /A">
+            <obj_property name="ElementShortName">A[7:0]</obj_property>
+            <obj_property name="ObjectShortName">A[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[2].mult_inst /B">
+            <obj_property name="ElementShortName">B[7:0]</obj_property>
+            <obj_property name="ObjectShortName">B[7:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">7</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/etapa1contodo/Topprimeraetapa_inst/\row[2].col[2].mult_inst /Out">
+            <obj_property name="ElementShortName">Out[15:0]</obj_property>
+            <obj_property name="ObjectShortName">Out[15:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+</wave_config>
