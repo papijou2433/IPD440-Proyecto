@@ -99,43 +99,148 @@ Conv_1_FSM  Conv_1_FSM_inst (
 
 
 
-logic [7:0] filtro [2:0] [2:0];
 
 
-logic [15:0] sumandos_resultado[7:0];
-logic [19:0] resultado;
 
-assign resultado=sumandos_resultado[0]+sumandos_resultado[1]+sumandos_resultado[2]+sumandos_resultado[3]+sumandos_resultado[4]+sumandos_resultado[5]+sumandos_resultado[6]+sumandos_resultado[7];
+
+//////////////////////// Cambiar esta parte por un adder tree //////////////////////////
+logic signed [15:0] sumandos_resultado[8:0];
+
+logic signed [16:0] resultado;                // Declare as signed
+logic signed [16:0] temp_sum,temp_sumbias;              // Temporary signed variable for accumulation
+
+// Proper signed accumulation
+logic [15:0] bias [2:0];
 
 
 always_comb begin 
-    filtro[2][2]=8'h0B;
-    filtro[2][1]=8'hCC;
-    filtro[2][0]=8'h19;
-    filtro[1][2]=8'h1F;
-    filtro[1][1]=8'hCD;
-    filtro[1][0]=8'hC0;
-    filtro[0][2]=8'hEB;
-    filtro[0][1]=8'hAE;
-    filtro[0][0]=8'h0E;
+    bias[0]=16'hA9BD;
+    bias[1]=16'h0DF5;
+    bias[2]=16'hD70A;
 end
+
+
+
+always_comb begin
+    temp_sum = 0;
+    for (int i = 0; i < 9; i++) begin
+        temp_sum = temp_sum + $signed(sumandos_resultado[i]);
+    end
+    temp_sumbias=temp_sum+$signed(bias[dir]);
+    resultado = (temp_sumbias[16])?16'd0:temp_sumbias;
+end
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+// logic [7:0] filtro [2:0] [2:0];
+
+// always_comb begin 
+//     filtro[2][2]=8'h0B;
+//     filtro[2][1]=8'hCC;
+//     filtro[2][0]=8'h19;
+//     filtro[1][2]=8'h1F;
+//     filtro[1][1]=8'hCD;
+//     filtro[1][0]=8'hC0;
+//     filtro[0][2]=8'hEB;
+//     filtro[0][1]=8'hAE;
+//     filtro[0][0]=8'h0E;
+// end
 
 
 genvar p;
 genvar q;
 
-for (q=0;q<3;q++) begin
-    for (p=0;p<3;p++) begin
-        mult  mult_inst (
-        .A(filtro[p][q]),
-        .B(out_matrix[p][q]),
-        .Out(sumandos_resultado[p+3*q])
-    );
-    end
+
+
+// for (q=0;q<3;q++) begin
+//     for (p=0;p<3;p++) begin
+//         mult  mult_inst (
+//         .A(filtro[p][q]),
+//         .B(out_matrix[p][q]),
+//         .Out(sumandos_resultado[p+3*q])
+//     );
+//     end
+// end
+
+
+
+logic [7:0] filtro1 [2:0] [2:0];
+logic [7:0] filtro2 [2:0] [2:0];
+logic [7:0] filtro3 [2:0] [2:0];
+logic [7:0] filtro_mux [2:0] [2:0];
+
+
+always_comb begin 
+    filtro1[2][2]=8'h2D;
+    filtro1[2][1]=8'h43;
+    filtro1[2][0]=8'h53;
+    filtro1[1][2]=8'h55;
+    filtro1[1][1]=8'h4C;
+    filtro1[1][0]=8'h62;
+    filtro1[0][2]=8'h3C;
+    filtro1[0][1]=8'h1D;
+    filtro1[0][0]=8'h4F;
+end
+
+always_comb begin 
+    filtro2[2][2]=8'h2C;
+    filtro2[2][1]=8'h27;
+    filtro2[2][0]=8'hED;
+    filtro2[1][2]=8'h2E;
+    filtro2[1][1]=8'hE7;
+    filtro2[1][0]=8'hB4;
+    filtro2[0][2]=8'h1B;
+    filtro2[0][1]=8'hFB;
+    filtro2[0][0]=8'hB3;
+end
+
+always_comb begin 
+    filtro3[2][2]=8'h49;
+    filtro3[2][1]=8'hF1;
+    filtro3[2][0]=8'h02;
+    filtro3[1][2]=8'h38;
+    filtro3[1][1]=8'h37;
+    filtro3[1][0]=8'h2D;
+    filtro3[0][2]=8'h47;
+    filtro3[0][1]=8'h3D;
+    filtro3[0][0]=8'h3E;
 end
 
 
+     
 
+always_comb begin
+    for (int i = 0; i < 3; i++) begin
+        for (int j = 0; j < 3; j++) begin
+            case (dir)
+                2'd0: filtro_mux[i][j] = filtro1[i][j];
+                2'd1: filtro_mux[i][j] = filtro2[i][j];
+                2'd2: filtro_mux[i][j] = filtro3[i][j];
+                default: filtro_mux[i][j] = 8'd0;
+            endcase
+        end
+    end
+end
+
+generate
+    for (q = 0; q < 3; q++) begin : row
+        for (p = 0; p < 3; p++) begin : col
+            mult mult_inst (
+                .A(filtro_mux[p][q]),
+                .B(out_matrix[p][q]),
+                .Bias(bias[dir]),
+                .Out(sumandos_resultado[p + 3*q])
+            );
+        end
+    end
+endgenerate
+
+
+
+
+
+////
 
 
 always_comb begin 

@@ -21,24 +21,16 @@
 
 
 module mult(
-    input logic[7:0]    A,B,
-    output logic[15:0]  Out
-    );
-    // logic[2:0] Fila1,Fila2,Columna1,Columna2;
-    // logic[1:0] Fila3,Columna3;
-    // logic[5:0] M1,M2,M4,M5;
-    // logic[4:0] M3,M6,M7,M8;
-    // logic[3:0] M9;
-    // assign Fila1    = A[2:0];
-    // assign Fila2    = A[5:3];
-    // assign Fila3    = A[7:6];
-    // assign Columna1 = B[2:0];
-    // assign Columna2 = B[5:3];
-    // assign Columna3 = B[7:6];
-    logic [14:0]preout;   
+    input  logic [7:0] A, B,Bias,             // Q1.7 inputs
+    output logic [15:0] Out              // Q1.15 output
+);
+    logic signed [7:0] sA, sB;
+    logic signed [15:0] product;
+
     always_comb begin
-        preout=A*B;
+        sA = A;
+        sB = B;
+        product = sA * sB;               // Q1.7 × Q1.7 = Q2.14
+        Out = product <<< 1;            // Shift left 1 to get Q1.15 from Q2.14
     end
-    assign Out[14:0]={0,preout[14:0]};
-    assign Out[15]=A[7]^B[7];
 endmodule
