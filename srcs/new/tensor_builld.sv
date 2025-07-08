@@ -11,7 +11,7 @@ module tensor_builder#
     input logic[1:0] cha_addr,  //3 canales
     input logic[WIDTH-1:0] data_in,
 
-    output logic[WIDTH-1:0] tensor[7:0][7:0]
+    output logic signed [WIDTH-1:0] tensor[7:0][7:0]
     );
     always_ff@(posedge clk) 
         if(rst)

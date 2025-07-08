@@ -23,7 +23,7 @@ module adder_tree#
         for (j = 0; j < NINPUTS/2; j++) begin: initial_stage
             always_comb begin
                 if ((2*j + 1) < NINPUTS)
-                    stages_sum[0][j] = d[2*j]+d[2*j+1]
+                    stages_sum[0][j] = d[2*j]+d[2*j+1];
                 else
                     stages_sum[0][j] = d[2*j];
             end

@@ -12,9 +12,9 @@ module etapa2(
     output logic[7:0] read_addr,
 
     //Salida final del sistema?(se implementa Fc care palo aca nomas?)
-    output logic [34:0] s2_Out[143:0]
+    output logic signed [34:0] s2_Out[143:0]
 );
-    localparam Filter_WIDTH = 8;
+    localparam Filter_WIDTH = 17;
             //-----------Control-----------\\
     logic[2:0] row_addr;
     logic[2:0] col_addr;
@@ -53,11 +53,11 @@ module etapa2(
 
 
             //-----------Filtros-----------\\
-    logic[Filter_WIDTH-1:0] Filtro1[2:0][2:0][2:0];
-    logic[Filter_WIDTH-1:0] Filtro2[2:0][2:0][2:0];
-    logic[Filter_WIDTH-1:0] Filtro3[2:0][2:0][2:0];
-    logic[Filter_WIDTH-1:0] Filtro4[2:0][2:0][2:0];
-    logic[Filter_WIDTH-1:0] Filtro_mux[2:0][2:0][2:0];
+    logic signed [Filter_WIDTH-1:0] Filtro1[2:0][2:0][2:0];
+    logic signed [Filter_WIDTH-1:0] Filtro2[2:0][2:0][2:0];
+    logic signed [Filter_WIDTH-1:0] Filtro3[2:0][2:0][2:0];
+    logic signed [Filter_WIDTH-1:0] Filtro4[2:0][2:0][2:0];
+    logic signed [Filter_WIDTH-1:0] Filtro_mux[2:0][2:0][2:0];
 
     
     Filtros_s2_ROM #(.WIDTH(Filter_WIDTH))
@@ -79,7 +79,7 @@ module etapa2(
         .Out(Filtro_mux)
     );
             //-----------Procesamiento-----------\\
-    logic[17:0] input_tensor[7:0][7:0][2:0];
+    logic signed[17:0] input_tensor[7:0][7:0][2:0];
     assign out_addr = {proc_dir,proc_counter};
     tensor_builder#(.WIDTH(17))
     tensor  
@@ -87,7 +87,7 @@ module etapa2(
         .row_addr(row_addr),
         .col_addr(col_addr),
         .cha_addr(cha_addr),
-        .data_in(BRAM_input),
+        .data_in({1'b0,BRAM_input}),
         .tensor(input_tensor)
     );
     s2_tensor_procesing
@@ -97,5 +97,5 @@ module etapa2(
         .Filter(Filtro_mux),
         .input_tensor(input_tensor),
         .output_res(s2_Out)
-    )
+    );
 endmodule
