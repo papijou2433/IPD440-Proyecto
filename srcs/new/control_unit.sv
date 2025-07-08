@@ -2,15 +2,14 @@ module control_unit(
     input logic clk, reset,
     input logic busy,
     input logic data_done,
-    output logic enable_a, enable_b,
+    output logic enable_a,
     output logic data_rdy,
     output logic [5:0] dir_A,
-    output logic [5:0] dir_A_buff,
-    output logic [7:0] dir_B
+    output logic [5:0] dir_A_buff
 );
 
     // Agregamos el estado MEM
-    enum {IDLE, READ, MEM, WAIT, WRITE} state, next_state;
+    enum {IDLE, READ, MEM, WAIT} state, next_state;
 
     logic [5:0] dir_A_next;
     logic [7:0] dir_B_next;
@@ -25,7 +24,6 @@ module control_unit(
         if (reset) begin
             state <= IDLE;
             dir_A <= 0;
-            dir_B <= 0;
             dir_A_buffn <= 0;
             dir_A_buff <= 0;
             mem_counter <= 0;
@@ -34,7 +32,6 @@ module control_unit(
             dir_A_buff <= dir_A_buffn;
             dir_A_buffn <= dir_A;
             dir_A <= dir_A_next;
-            dir_B <= dir_B_next;
             mem_counter <= mem_counter_next;
         end
     end
@@ -43,21 +40,17 @@ module control_unit(
     always_comb begin
         // Defaults
         dir_A_next = dir_A;
-        dir_B_next = dir_B;
         enable_a = 0;
-        enable_b = 0;
         data_rdy = 0;
         mem_counter_next = mem_counter;
 
         case (state)
             IDLE: begin
                 dir_A_next = 0;
-                dir_B_next = 0;
             end
 
             READ: begin
                 dir_A_next = dir_A + 1;
-                dir_B_next = 0;
                 enable_a = 1;
             end
 
@@ -68,14 +61,7 @@ module control_unit(
 
             WAIT: begin
                 dir_A_next = 0;
-                dir_B_next = 0;
                 data_rdy = 1;
-            end
-
-            WRITE: begin
-                dir_A_next = 0;
-                dir_B_next = dir_B + 1;
-                enable_b = 1;
             end
         endcase
     end
@@ -108,16 +94,9 @@ module control_unit(
 
             WAIT: begin
                 if (data_done)
-                    next_state = WRITE;
-                else
-                    next_state = WAIT;
-            end
-
-            WRITE: begin
-                if (dir_B == 192)
-                    next_state = WAIT;
-                else
                     next_state = IDLE;
+                else
+                    next_state = WAIT;
             end
 
             default: next_state = IDLE;

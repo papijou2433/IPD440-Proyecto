@@ -20,9 +20,7 @@ logic[7:0] out_addr;
 assign row_dir = proc_counter[3:2];
 assign col_dir = proc_counter[1:0];
 assign cha_dir = proc_dir;
-always_comb
-    foreach(output_res[i])
-        output_res[i] = 36'd0;
+
 genvar i,j,k;
 generate
     for(k=0;k<3;k++) // canal
@@ -82,6 +80,8 @@ Relu_s2
 );
 
 always_comb begin
+    foreach(output_res[i])
+        output_res[i] = 35'd0;
     output_res[out_addr] = relu_out;
 end
 

@@ -103,6 +103,8 @@ module Topprimeraetapa(
     /// logica de transicion
 
 
+    logic write;
+
     always_comb begin 
         case (state)
              IDLE:begin
@@ -134,6 +136,7 @@ module Topprimeraetapa(
 
     always_comb begin
         write=0; 
+        counter_next=0;
         case (state)
              IDLE:begin
                 counter_next=0;
@@ -149,14 +152,12 @@ module Topprimeraetapa(
     end
 
 
-    logic write;
-
 
 logic [5:0]dir_A,dir_A_buff;
 logic [7:0]dir_B;
     logic ena_a,ena_b;
     logic [7:0] input_tensor [0:7][0:7];
-    logic [7:0]  second_stage [2:0] [7:0]  ;
+    logic [7:0] second_stage [2:0] [7:0]  ;
     logic [7:0] mem_val ;
     logic busy;
     logic data_done; //lista la primera etapa
@@ -198,11 +199,9 @@ blk_mem_gen_0 BramA (
     .data_done(data_done),
     
     .enable_a(enable_a),
-    .enable_b(enable_b),
     .data_rdy(data_rdy),
     .dir_A(dir_A),
     .dir_A_buff(dir_A_buff)
-    // .dir_B(dir_B)
 );
 
 always_ff @( posedge clk ) begin
@@ -351,7 +350,7 @@ generate
     for (q = 0; q < 3; q++) begin : row
         for (p = 0; p < 3; p++) begin : col
             mult #
-            (.IWIDTH(8),.OWIDTH(16))
+            (.IWIDTH(8),.OWIDTH(17))
             mult_inst (
                 .A(filtro_mux[p][q]),
                 .B(out_matrix[p][q]),
@@ -390,7 +389,7 @@ BRAMB bramb (
 
 
 
-logic signed[35:0] s2_Out[143:0];
+logic signed[34:0] s2_Out[143:0];
 
 
 
