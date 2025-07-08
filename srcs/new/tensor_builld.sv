@@ -6,16 +6,17 @@ module tensor_builder#
     input logic clk,
     input logic rst,
 
-    input logic[2:0] row_addr,
-    input logic[2:0] col_addr,
+    input logic[2:0] row_addr,  //8 filas
+    input logic[2:0] col_addr,  //8 columnas
+    input logic[1:0] cha_addr,  //3 canales
     input logic[WIDTH-1:0] data_in,
 
-    output logic[WIDTH-1:0] tensor[2:0][2:0]
+    output logic[WIDTH-1:0] tensor[7:0][7:0]
     );
     always_ff@(posedge clk) 
         if(rst)
-            foreach(tensor[i,j])
-                tensor[i][j]    <= '0;
+            foreach(tensor[i,j,k])
+                tensor[i][j][k]    <= '0;
         else    
-            tensor[row_addr][col_addr]  <= data_in;  
+            tensor[row_addr][col_addr][cha_addr]  <= data_in;  
 endmodule

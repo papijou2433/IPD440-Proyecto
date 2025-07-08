@@ -33,8 +33,8 @@ logic [7:0]dir_B;
     logic [7:0]  second_stage [2:0] [7:0]  ;
     logic [7:0] mem_val ;
     logic busy;
-    logic data_done;
-    logic data_rdy;
+    logic data_done; //lista la primera etapa
+    logic data_rdy; //almacenado el 8x8
 
 
     /// Memoria de entrada ///
@@ -60,6 +60,7 @@ blk_mem_gen_0 BramA (
     .reset(reset),
     .busy(0),
     .data_done(data_done),
+    
     .enable_a(enable_a),
     .enable_b(enable_b),
     .data_rdy(data_rdy),
