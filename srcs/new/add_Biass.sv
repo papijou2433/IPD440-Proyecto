@@ -7,10 +7,10 @@ module add_Bias(
 logic[33:0] Bias;
 always_comb begin
     case(Bias_sel)
-        2'b00: Bias = 34'hAAAAAAAA0; // Example bias value for channel 0
-        2'b01: Bias = 34'hAAAAAAAA0;
-        2'b10: Bias = 34'hAAAAAAAA0;
-        2'b11: Bias = 34'hAAAAAAAA0;
+        2'b00: Bias = 34'h0AAAAAAAA; // Example bias value for channel 0
+        2'b01: Bias = 34'h0AAAAAAAA;
+        2'b10: Bias = 34'h0AAAAAAAA;
+        2'b11: Bias = 34'h0AAAAAAAA;
         default:Bias= 34'h000000000;
     endcase
     Bias_res = Bias + adder_res;

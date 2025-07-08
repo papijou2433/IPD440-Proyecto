@@ -26,8 +26,8 @@ module mult#
     parameter OWIDTH = 16
 )    
     (
-    input  logic [IWIDTH-1:0] A, B,             // Q1.7 inputs
-    output logic [OWIDTH-1:0] Out              // Q1.15 output
+    input  logic  signed [IWIDTH-1:0] A, B,             // Q1.7 inputs
+    output logic  signed [OWIDTH-1:0] Out              // Q1.15 output
 );
     logic signed [IWIDTH-1:0] sA, sB;
     logic signed [OWIDTH-1:0] product;

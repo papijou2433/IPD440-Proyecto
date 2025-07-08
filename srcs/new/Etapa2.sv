@@ -1,3 +1,4 @@
+(* keep_hierarchy = "yes" *)
 module etapa2(
     input logic clk, reset,
     input logic data_done,
@@ -12,7 +13,7 @@ module etapa2(
     output logic[7:0] read_addr,
 
     //Salida final del sistema?(se implementa Fc care palo aca nomas?)
-    output logic signed [35:0] s2_Out[143:0]
+    output logic signed [34:0] s2_Out[143:0]
 );
     localparam Filter_WIDTH = 17;
             //-----------Control-----------\\
@@ -45,7 +46,7 @@ module etapa2(
     Control_FSM_s2  processing_Control
     (
         .clk(clk),
-        .reset(rst),
+        .reset(reset),
         .data_rdy(data_ready),
 
         .busy_proc(busy_proc),
@@ -92,7 +93,7 @@ module etapa2(
         .row_addr(row_addr),
         .col_addr(col_addr),
         .cha_addr(cha_addr),
-        .data_in({1'b0,BRAM_input}),
+        .data_in(BRAM_input),
         .tensor(input_tensor)
     );
     s2_tensor_procesing s2tensonr_inst

@@ -21,9 +21,135 @@
 
 
 module Topprimeraetapa(
-    input logic clk,
-    input logic reset
-);
+    input logic                clk,
+    input  logic               reset,
+	input  logic               uart_rx,
+	output logic               uart_tx
+	// output logic               uart_tx_busy,
+	// output logic               uart_tx_usb
+    );
+
+
+	logic [7:0]    tx_data; 
+	logic [7:0]    rx_data; 
+	logic [1:0]    reset_sr;
+	logic resetd;
+	assign resetd = reset_sr[1];
+	  //////////////////////////////////////////////////////////////////////////////////////////////////////  //////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Synchronization of reset push button
+	always_ff @(posedge clk)
+		reset_sr <= {reset_sr[0], reset};
+
+    assign uart_tx_usb = uart_tx;
+    assign uart_tx_busy = tx_busy;
+
+    UART_tx_control_wrapper 
+    #(  .INTER_BYTE_DELAY (100_000),
+        .WAIT_FOR_REGISTER_DELAY (100)
+        
+        ) UART_control_inst (
+        .clock      (clk),
+        .reset      (resetd),
+        .PB         (),
+        .SW         (),
+        .tx_data    (tx_data),
+        .tx_start   (tx_start),
+        .stateID    ()
+        );
+
+
+    uart_basic #(
+        .CLK_FREQUENCY(100000000), // reloj base de entrada
+        .BAUD_RATE(115200)
+    ) uart_basic_inst (
+        .clk          (clk),
+        .reset        (reset),
+        .rx           (uart_rx),
+        .rx_data      (rx_data),
+        .rx_ready     (rx_ready),
+        .tx           (uart_tx),
+        .tx_start     (tx_start),
+        .tx_data      (tx_data),
+        .tx_busy      (tx_busy)
+    );
+    
+
+    typedef enum logic [1:0] {
+        IDLE,
+        RX,
+        DONE
+    } state_t;
+
+    state_t state,next_state;
+
+
+    logic [5:0]counter, counter_next;
+
+
+    always_ff @( posedge clk ) begin 
+        if(reset) begin
+            state<=IDLE;
+            counter<=0;
+        end
+            state<=next_state;
+            counter<=counter_next;
+    end
+
+
+
+
+
+
+    /// logica de transicion
+
+
+    always_comb begin 
+        case (state)
+             IDLE:begin
+                if((rx_data==1 )&&(rx_ready)) begin
+                    next_state=RX;
+                end else begin
+                    next_state=IDLE;
+                end
+             end
+             RX:begin
+                if(rx_ready) begin
+                    next_state=DONE;
+                end else begin
+                    next_state=RX;
+                end
+             end
+             DONE: begin
+                if(counter==63) begin
+                    next_state=IDLE;
+                end else begin
+                    next_state=RX;
+                end
+             end
+             default: next_state=IDLE;
+        endcase
+    end
+
+    // logica de salida
+
+    always_comb begin
+        write=0; 
+        case (state)
+             IDLE:begin
+                counter_next=0;
+             end
+             RX:begin
+                counter_next=counter;
+                write=1;
+             end
+             DONE: begin
+                counter_next=counter+1;
+             end
+        endcase
+    end
+
+
+    logic write;
 
 
 logic [5:0]dir_A,dir_A_buff;
@@ -40,19 +166,29 @@ logic [7:0]dir_B;
     /// Memoria de entrada ///
 blk_mem_gen_0 BramA (
     .clka(clk),    // input wire clka
-    .wea(),      // input wire [0 : 0] wea
-    .addra(),  // input wire [2 : 0] addra
-    .dina(),    // input wire [7 : 0] dina
+    .wea(write),      // input wire [0 : 0] wea
+    .addra(counter),  // input wire [2 : 0] addra
+    .dina(rx_data),    // input wire [7 : 0] dina
     .douta(),  // output wire [7 : 0] douta
     .clkb(clk),    // input wire clkb
     .enb(1),
     .web(0),      // input wire [0 : 0] web
     .addrb(dir_A),  // input wire [2 : 0] addrb
-    .dinb(),    // input wire [7 : 0] dinb
+    .dinb(0),    // input wire [7 : 0] dinb
     .doutb(mem_val)  // output wire [7 : 0] doutb
   );
 
 
+
+
+
+
+
+
+
+
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////////  //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Control unit y actualizacion de tensor de entrada
 
   control_unit  control_unit_inst (
@@ -105,7 +241,7 @@ Conv_1_FSM  Conv_1_FSM_inst (
 
 
 //////////////////////// Cambiar esta parte por un adder tree //////////////////////////
-logic signed [15:0] sumandos_resultado[8:0];
+logic signed [16:0] sumandos_resultado[8:0];
 
 logic signed [16:0] resultado;                // Declare as signed
 logic signed [16:0] temp_sum,temp_sumbias;              // Temporary signed variable for accumulation
@@ -219,27 +355,42 @@ generate
             mult_inst (
                 .A(filtro_mux[p][q]),
                 .B(out_matrix[p][q]),
-                .Bias(bias[dir]),
                 .Out(sumandos_resultado[p + 3*q])
             );
         end
     end
 endgenerate
+  //////////////////////////////////////////////////////////////////////////////////////////////////////  //////////////////////////////////////////////////////////////////////////////////////////////////////  //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+assign dir_B={dir[1:0],dir_counter};
 
-always_comb begin 
-    assign dir_B={dir[1:0],dir_counter};
-end
 BRAMB bramb (
 .clka(clk),    // input wire clka
 .wea(1),      // input wire [0 : 0] wea
 .addra(dir_B),  // input wire [7 : 0] addra
 .dina(resultado),    // input wire [19 : 0] dina
-.clkb(0),    // input wire clkb
-.enb(0),      // input wire enb
-.addrb(),  // input wire [7 : 0] addrb
-.doutb()  // output wire [19 : 0] doutb
+.clkb(clk),    // input wire clkb
+.enb(1),      // input wire enb
+.addrb(read_addr),  // input wire [7 : 0] addrb
+.doutb(BRAM_input)  // output wire [19 : 0] doutb
 );
+
+
+
+
+ etapa2  etapa2_inst (
+    .clk(clk),
+    .reset(reset),
+    .BRAM_input(BRAM_input),
+    .busy(busy),
+    .enable_read(enable_read),
+    .read_addr(read_addr),
+    .s2_Out(s2_Out)
+  );
+
+
+
+logic signed[35:0] s2_Out[143:0];
 
 
 

@@ -66,9 +66,9 @@ module Control_FSM_s2(
     always_comb begin
         case(state) 
             IDLE: begin
+                dir_counter_next=0; 
                 if(!data_rdy)begin
                     next_state=IDLE;
-                    dir_counter_next=0; 
                 end else begin
                     next_state=MULT_ONE;
                 end

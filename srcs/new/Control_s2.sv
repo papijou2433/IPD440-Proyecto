@@ -5,20 +5,19 @@ module Control_s2(
     output logic enable_a,
     output logic data_rdy,
     output logic [7:0] dir_A,
-    output logic [7:0] dir_A_buff,
     output logic [2:0] row_addr,
     output logic [2:0] col_addr,
-    output logic [2:0] cha_addr
+    output logic [1:0] cha_addr
 );
 
 logic [7:0] dir_A_next;
 
-    logic [7:0] dir_A_buffn;
+    logic [7:0] dir_A_buffn,dir_A_buff;
     // Agregamos el estado MEM
     enum {IDLE, READ, MEM, WAIT, READY} state, next_state;
-    assign row_addr = dir_A_buffn[5:3]; //8 filas
-    assign col_addr = dir_A_buffn[2:0]; //8  columnas
-    assign cha_addr = dir_A_buffn[7:6]; //3 canales
+    assign row_addr = dir_A_buff[5:3]; //8 filas
+    assign col_addr = dir_A_buff[2:0]; //8  columnas
+    assign cha_addr = dir_A_buff[7:6]; //3 canales
 
     
 
@@ -47,7 +46,8 @@ logic [7:0] dir_A_next;
         // Defaults
         dir_A_next = dir_A;
         enable_a = 0;
-        data_rdy = 0;
+        data_rdy = 0;       
+        busy=0;
         mem_counter_next = mem_counter;
 
         case (state)
@@ -58,16 +58,19 @@ logic [7:0] dir_A_next;
             READ: begin
                 dir_A_next = dir_A + 1;
                 enable_a = 1;
+                busy = 1;
             end
 
             MEM: begin
                 enable_a = 0;  // o dejarlo igual a READ si se desea mantener enable_a en alto
                 mem_counter_next = mem_counter + 1;
+                busy = 1;
             end
 
             WAIT: begin
                 dir_A_next = 0;
                 data_rdy = 1;
+                busy = 1;
             end
         endcase
     end

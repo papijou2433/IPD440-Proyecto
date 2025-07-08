@@ -1,9 +1,9 @@
 module s2_tensor_procesing(
     input logic[1:0] proc_dir, // Filtro a usar
     input logic[5:0] proc_counter, // {Fila,Columna}
-    input logic[16:0] Filter[2:0][2:0][2:0], 
-    input logic[16:0] input_tensor[7:0][7:0][2:0],
-    output logic signed [35:0] output_res[143:0]
+    input logic signed [16:0] Filter[2:0][2:0][2:0], 
+    input logic signed [16:0] input_tensor[7:0][7:0][2:0],
+    output logic signed [34:0] output_res[143:0]
 );
 //1. Obtener matriz 3x3
 //2. multiplicar según filtro
@@ -11,15 +11,18 @@ module s2_tensor_procesing(
 //4. añadir bias
 //5. ReLu
 //6. Salida
-logic[16:0] matrix[2:0][2:0][2:0];
+logic signed [16:0] matrix[2:0][2:0][2:0];
 logic[1:0]  row_dir,col_dir,cha_dir;
-logic[33:0] mult_res[26:0]; // matrix 3x3 por 3 canales, all se sumam en adder tree
-logic[33:0] adder_res;
-logic[34:0] Bias_res,Bias;
+logic signed [33:0] mult_res[26:0]; // matrix 3x3 por 3 canales, all se sumam en adder tree
+logic signed [33:0] adder_res;
+logic signed [34:0] Bias_res,Bias;
 logic[7:0] out_addr;
 assign row_dir = proc_counter[3:2];
 assign col_dir = proc_counter[1:0];
 assign cha_dir = proc_dir;
+always_comb
+    foreach(output_res[i])
+        output_res[i] = 36'd0;
 genvar i,j,k;
 generate
     for(k=0;k<3;k++) // canal
@@ -67,7 +70,7 @@ add_Bias bias_inst
     .Bias_res(Bias_res)
 );
 
-logic signed [35:0] relu_out; // intermediate signal
+logic signed [34:0] relu_out; // intermediate signal
 ReLu#
 (
     .WIDTH(35)
