@@ -80,6 +80,7 @@ module etapa2(
     );
             //-----------Procesamiento-----------\\
     logic[17:0] input_tensor[7:0][7:0][2:0];
+    assign out_addr = {proc_dir,proc_counter};
     tensor_builder#(.WIDTH(17))
     tensor  
     (
@@ -90,4 +91,11 @@ module etapa2(
         .tensor(input_tensor)
     );
     s2_tensor_procesing
+    (
+        .proc_dir(proc_dir),
+        .proc_counter(proc_counter),
+        .Filter(Filtro_mux),
+        .input_tensor(input_tensor),
+        .output_res(s2_Out)
+    )
 endmodule

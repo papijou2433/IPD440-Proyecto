@@ -84,6 +84,7 @@ module Control_FSM_s2(
             end
             MULT_ONE:begin
                 if(dir_counter==35)begin
+                    dir_counter_next=0;
                     next_state=MULT_TWO;
                 end else begin
                     next_state=MULT_ONE;
@@ -91,6 +92,7 @@ module Control_FSM_s2(
             end
             MULT_TWO:begin
                 if(dir_counter==35)begin
+                    dir_counter_next=0;
                     next_state=MULT_THREE;
                 end else begin
                     next_state=MULT_TWO;
@@ -98,6 +100,7 @@ module Control_FSM_s2(
             end
             MULT_THREE:begin
                 if(dir_counter==35)begin
+                    dir_counter_next=0;
                     next_state=MULT_FOUR;
                 end else begin
                     next_state=MULT_THREE;
