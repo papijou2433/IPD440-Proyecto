@@ -108,7 +108,7 @@ logic signed [15:0] sumandos_resultado[8:0];
 
 logic signed [16:0] resultado;                // Declare as signed
 logic signed [16:0] temp_sum,temp_sumbias;              // Temporary signed variable for accumulation
-
+logic signed [16:0] Adder_tree_result;
 // Proper signed accumulation
 logic [15:0] bias [2:0];
 
@@ -119,49 +119,29 @@ always_comb begin
     bias[2]=16'hD70A;
 end
 
+// 4 etapas de sumadores
+// Revisar si es que está pescando bien la suma del último dato
 
-
-always_comb begin
-    temp_sum = 0;
-    for (int i = 0; i < 9; i++) begin
-        temp_sum = temp_sum + $signed(sumandos_resultado[i]);
-    end
-    temp_sumbias=temp_sum+$signed(bias[dir]);
-    resultado = (temp_sumbias[16])?16'd0:temp_sumbias;
-end
-
-//////////////////////////////////////////////////////////////////////////////////////
-
-
-// logic [7:0] filtro [2:0] [2:0];
-
-// always_comb begin 
-//     filtro[2][2]=8'h0B;
-//     filtro[2][1]=8'hCC;
-//     filtro[2][0]=8'h19;
-//     filtro[1][2]=8'h1F;
-//     filtro[1][1]=8'hCD;
-//     filtro[1][0]=8'hC0;
-//     filtro[0][2]=8'hEB;
-//     filtro[0][1]=8'hAE;
-//     filtro[0][0]=8'h0E;
-// end
-
-
-genvar p;
-genvar q;
+adder_tree#(
+    .NINPUTS(9),
+    .IWIDTH(17),
+    .OWIDTH(17)
+    )
+    adder_inst
+    (
+    .d(sumandos_resultado),
+    .q(Adder_tree_result)
+    );
+ReLu #(
+    .WIDTH(17)
+    )
+    Relu_inst(
+        .in(Adder_tree_result),
+        .Out(resultado)
+    );
 
 
 
-// for (q=0;q<3;q++) begin
-//     for (p=0;p<3;p++) begin
-//         mult  mult_inst (
-//         .A(filtro[p][q]),
-//         .B(out_matrix[p][q]),
-//         .Out(sumandos_resultado[p+3*q])
-//     );
-//     end
-// end
 
 
 
@@ -209,7 +189,12 @@ end
 
 
      
-
+// Quizás acá se deba apretar o modificar la descripción para reducir lógica utilizada
+genvar p;
+genvar q;
+genvar i;
+genvar j;
+// es necesario un for? no bastaría con un filtro_mux=filtroN a secas?
 always_comb begin
     for (int i = 0; i < 3; i++) begin
         for (int j = 0; j < 3; j++) begin
@@ -223,10 +208,14 @@ always_comb begin
     end
 end
 
+
+
 generate
     for (q = 0; q < 3; q++) begin : row
         for (p = 0; p < 3; p++) begin : col
-            mult mult_inst (
+            mult #
+            (.IWIDTH(8),.OWIDTH(16))
+            mult_inst (
                 .A(filtro_mux[p][q]),
                 .B(out_matrix[p][q]),
                 .Bias(bias[dir]),
@@ -235,12 +224,6 @@ generate
         end
     end
 endgenerate
-
-
-
-
-
-////
 
 
 always_comb begin 

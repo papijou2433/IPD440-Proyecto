@@ -20,12 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mult(
-    input  logic [7:0] A, B,Bias,             // Q1.7 inputs
-    output logic [15:0] Out              // Q1.15 output
+module mult#
+(
+    parameter IWIDTH = 8,
+    parameter OWIDTH = 16
+)    
+    (
+    input  logic [IWIDTH-1:0] A, B,Bias,             // Q1.7 inputs
+    output logic [OWIDTH-1:0] Out              // Q1.15 output
 );
-    logic signed [7:0] sA, sB;
-    logic signed [15:0] product;
+    logic signed [IWIDTH-1:0] sA, sB;
+    logic signed [OWIDTH-1:0] product;
 
     always_comb begin
         sA = A;
