@@ -4,15 +4,14 @@ module Control_FSM_s2(
 
     output logic [1:0] dir,
     output logic [5:0] dir_counter,
-    output logic data_done
+    output logic busy_proc
     );
     typedef enum logic [2:0] {
         IDLE,
         MULT_ONE,
         MULT_TWO,
         MULT_THREE,
-        MULT_FOUR,
-        DONE
+        MULT_FOUR
     } state_t;
 
     state_t state, next_state;
@@ -34,41 +33,31 @@ module Control_FSM_s2(
     always_comb begin
         case(state) 
             IDLE: begin
-                data_done=0;
+                busy_proc=0;
                 dir=0;
-                dir_counter_next=0;
             end
             MULT_ONE: begin
-                data_done=0;
+                busy_proc=1;
                 dir=0;
-                dir_counter_next=dir_counter+1;
             end
             MULT_TWO: begin
-                data_done=0;
+                busy_proc=1;
                 dir=1;
-                dir_counter_next=dir_counter+1;
             end
             MULT_THREE: begin
-                data_done=0;
+                busy_proc=1;
                 dir=2;
-                dir_counter_next=dir_counter+1;
             end
             MULT_FOUR: begin
-                data_done = 0;
+                busy_proc=1;
                 dir = 3;
-                dir_counter_next = dir_counter+1;
                 
             end
-            DONE: begin
-                data_done=1;
-                dir=0;
-                dir_counter_next=0;
-            end
+
             default:
             begin
-                data_done=0;
+                busy_proc=0;
                 dir=0;
-                dir_counter_next=0;
             end
         endcase
     end
@@ -79,6 +68,7 @@ module Control_FSM_s2(
             IDLE: begin
                 if(!data_rdy)begin
                     next_state=IDLE;
+                    dir_counter_next=0; 
                 end else begin
                     next_state=MULT_ONE;
                 end
@@ -86,36 +76,43 @@ module Control_FSM_s2(
             MULT_ONE:begin
                 if(dir_counter==35)begin
                     next_state=MULT_TWO;
+                    dir_counter_next=0; 
                 end else begin
                     next_state=MULT_ONE;
+                    dir_counter_next=dir_counter+1; 
                 end
             end
             MULT_TWO:begin
                 if(dir_counter==35)begin
                     next_state=MULT_THREE;
+                    dir_counter_next=0;
                 end else begin
                     next_state=MULT_TWO;
+                    dir_counter_next=dir_counter+1; 
                 end
             end
             MULT_THREE:begin
                 if(dir_counter==35)begin
                     next_state=MULT_FOUR;
+                    dir_counter_next=0; 
                 end else begin
                     next_state=MULT_THREE;
+                    dir_counter_next=dir_counter+1; 
                 end
             end
             MULT_FOUR:begin
                 if(dir_counter==35)begin
-                    next_state=DONE;
+                    next_state=IDLE;
+                    dir_counter_next=0; 
                 end else begin
                     next_state=MULT_FOUR;
+                    dir_counter_next=dir_counter+1; 
                 end
             end
-            DONE:begin
-                next_state=IDLE;
-            end
+
             default: begin
                 next_state=IDLE;
+                dir_counter_next=0; 
             end
         endcase
     end

@@ -1,46 +1,45 @@
-
-module adder_tree#
-(
-    parameter NINPUTS = 2048,
-    parameter IWIDTH = 8,
-    parameter OWIDTH = 18
-)
-(
-    input logic signed[IWIDTH-1:0] d[NINPUTS-1:0],
-    output logic signed[OWIDTH-1:0] q
+module adder_tree#(
+    parameter int NINPUTS = 27,
+    parameter int IWIDTH  = 8,
+    parameter int OWIDTH  = 18
+)(
+    input  logic signed [IWIDTH-1:0] d[NINPUTS],
+    output logic signed [OWIDTH-1:0] q
 );
 
-    localparam NSTAGES = $clog2(NINPUTS);   // Número de etapas
-    localparam SWIDTH = IWIDTH + NSTAGES - 1;   // Tamaño máximo de los sumadores
+    localparam int NSTAGES = $clog2(NINPUTS);
+    localparam int SWIDTH  = IWIDTH + NSTAGES; // Ancho suficiente para evitar overflow
 
-    // Registros para almacenar los resultados de cada etapa
-    logic signed[SWIDTH-1:0] stages_sum [NSTAGES:0][NINPUTS/2-1:0];
+    // Almacenamiento por etapa (la cantidad de elementos disminuye por etapa)
+    logic signed [SWIDTH-1:0] stage_data [0:NSTAGES][0:NINPUTS-1];
 
-    // Generación de la lógica usando generate
+    // Etapa 0: asignación directa de entradas
+    genvar i;
+    generate
+        for (i = 0; i < NINPUTS; i++) begin : input_stage
+            always_comb stage_data[0][i] = d[i];
+        end
+    endgenerate
+
+    // Etapas intermedias: reducción en árbol binario
     genvar stage, j;
     generate
-        // Primera etapa: cálculo de la distancia Manhattan
-        for (j = 0; j < NINPUTS/2; j++) begin: initial_stage
-            always_comb begin
-                if ((2*j + 1) < NINPUTS)
-                    stages_sum[0][j] = d[2*j]+d[2*j+1];
-                else
-                    stages_sum[0][j] = d[2*j];
-            end
-        end
+        for (stage = 1; stage <= NSTAGES; stage++) begin : adder_stages
+            localparam int n_prev = (NINPUTS + (1 << (stage - 1)) - 1) >> (stage - 1);
+            localparam int n_curr = (n_prev + 1) >> 1;
 
-        // Etapas posteriores: sumas secuenciales
-        for (stage = 1; stage <= NSTAGES; stage++) begin: adder_stages
-            localparam num_sum = NINPUTS / (2 ** (stage + 1));
-            for (j = 0; j < num_sum; j++) begin: stage_adder
+            for (j = 0; j < n_curr; j++) begin : sum_stage
                 always_comb begin
-                    stages_sum[stage][j] = stages_sum[stage-1][2*j] + stages_sum[stage-1][2*j + 1];
+                    if ((2*j + 1) < n_prev)
+                        stage_data[stage][j] = stage_data[stage-1][2*j] + stage_data[stage-1][2*j + 1];
+                    else
+                        stage_data[stage][j] = stage_data[stage-1][2*j]; // Propaga si no hay par
                 end
             end
         end
     endgenerate
 
-    // Salida: resultado final
-    assign q = stages_sum[NSTAGES-1][0][OWIDTH-1:0];
+    // Resultado final: el único dato restante en la última etapa
+    assign q = stage_data[NSTAGES][0][OWIDTH-1:0];
 
 endmodule

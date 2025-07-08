@@ -27,7 +27,7 @@ BRAMB your_instance_name (
   .clka(clk),    // input wire clka
   .wea(0),      // input wire [0 : 0] wea
   .addra(0),  // input wire [7 : 0] addra
-  .dina(dina),    // input wire [16 : 0] dina
+  .dina(17'd0),    // input wire [16 : 0] dina
   .clkb(clk),    // input wire clkb
   .enb(1),      // input wire enb
   .addrb(read_addr),  // input wire [7 : 0] addrb
@@ -48,7 +48,9 @@ BRAMB your_instance_name (
   etapa2  etapa2_inst (
     .clk(clk),
     .reset(reset),
+    .data_done(data_done),
     .BRAM_input(BRAM_input),
+    
     .busy(busy),
     .enable_read(enable_read),
     .read_addr(read_addr),
@@ -59,11 +61,15 @@ always #5  clk = ! clk ;
 initial begin
     clk = 0;
     reset = 0;
-    busy = 0;
+    data_done = 0;
     #10
     reset = 1; // Reset the system
     #10
     reset = 0; // Release reset
+    #40
+    data_done=1;
+    #10
+    data_done=0;
     
 end
 

@@ -1,6 +1,6 @@
 module s2_tensor_procesing(
     input logic[1:0] proc_dir, // Filtro a usar
-    input logic[3:0] proc_counter, // {Fila,Columna}
+    input logic[5:0] proc_counter, // {Fila,Columna}
     input logic[16:0] Filter[2:0][2:0][2:0], 
     input logic[16:0] input_tensor[7:0][7:0][2:0],
     output logic signed [35:0] output_res[143:0]
@@ -16,7 +16,6 @@ logic[1:0]  row_dir,col_dir,cha_dir;
 logic[33:0] mult_res[26:0]; // matrix 3x3 por 3 canales, all se sumam en adder tree
 logic[33:0] adder_res;
 logic[34:0] Bias_res,Bias;
-logic[34:0] Relu_Res;
 logic[7:0] out_addr;
 assign row_dir = proc_counter[3:2];
 assign col_dir = proc_counter[1:0];
@@ -44,7 +43,7 @@ generate
                     .Out(mult_res[k*9+3*i+j])
                 );
 endgenerate
-
+//quick fix for adder tree; issue: does not work well with impares
 
 
 always_comb begin

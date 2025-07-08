@@ -1,6 +1,6 @@
 module etapa2(
     input logic clk, reset,
-    //Aawinput logic data_done,
+    input logic data_done,
     input logic[16:0] BRAM_input,
 
     //Lógica de control
@@ -20,10 +20,11 @@ module etapa2(
     logic[2:0] col_addr;
     logic[1:0] cha_addr;
     logic data_ready;
+    logic busy_build,busy_proc;
     logic[1:0] proc_dir;
     logic[5:0] proc_counter;
     
-    
+    assign busy = busy_build|busy_proc;
     
     Control_s2 data_builder_Control 
     (
@@ -31,7 +32,8 @@ module etapa2(
         .reset(reset),
         .data_done(data_done),
 
-        .busy(busy),
+
+        .busy(busy_build),
         .enable_a(enable_read),
         .data_rdy(data_ready),
         .dir_A(read_addr),
@@ -46,7 +48,7 @@ module etapa2(
         .reset(rst),
         .data_rdy(data_ready),
 
-        .data_done(data_done),
+        .busy_proc(busy_proc),
         .dir(proc_dir),
         .dir_counter(proc_counter)
     );
@@ -70,13 +72,13 @@ module etapa2(
     );
     //Multiplexa cual filtro a usar y cual canal se utilizará
     // señales deben venir de una FSM que se encargue del recorrido de la BRAM
-    chanel_mux #(.WIDTH(Filter_WIDTH))
-    channel_mux_inst(
+    Filter_mux #(.WIDTH(Filter_WIDTH))
+    Filter_mux_inst(
         .Filtro1(Filtro1),
         .Filtro2(Filtro2),
         .Filtro3(Filtro3),
         .Filtro4(Filtro4),
-        .filter_used(filter_used),
+        .filter_used(proc_dir),
         .Out(Filtro_mux)
     );
             //-----------Procesamiento-----------\\

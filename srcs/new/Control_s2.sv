@@ -78,14 +78,14 @@ logic [7:0] dir_A_next;
 
         case (state)
             IDLE: begin
-                if (data_done)
+                if (!data_done)
                     next_state = IDLE;
                 else
                     next_state = READ;
             end
 
             READ: begin
-                if (dir_A == 191)
+                if (dir_A == 190)
                     next_state = MEM;
                 else
                     next_state = READ;
@@ -99,7 +99,7 @@ logic [7:0] dir_A_next;
             end
 
             WAIT: begin
-                if (data_done)
+                if (!data_done)
                     next_state = IDLE;
                 else
                     next_state = WAIT;

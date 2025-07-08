@@ -1,4 +1,4 @@
-module chanel_mux#
+module Filter_mux#
 (
     parameter WIDTH = 8
 )
