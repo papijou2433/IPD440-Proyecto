@@ -5,20 +5,22 @@ module Control_s2(
     output logic enable_a,
     output logic data_rdy,
     output logic [7:0] dir_A,
+    output logic [7:0] dir_A_buff,
     output logic [2:0] row_addr,
     output logic [2:0] col_addr,
     output logic [2:0] cha_addr
 );
 
+logic [7:0] dir_A_next;
+
+    logic [7:0] dir_A_buffn;
     // Agregamos el estado MEM
     enum {IDLE, READ, MEM, WAIT, READY} state, next_state;
     assign row_addr = dir_A_buffn[5:3]; //8 filas
     assign col_addr = dir_A_buffn[2:0]; //8  columnas
     assign cha_addr = dir_A_buffn[7:6]; //3 canales
 
-    logic [7:0] dir_A_next;
-
-    logic [7:0] dir_A_buffn;
+    
 
     // Contador para MEM (2 ciclos)
     logic [1:0] mem_counter, mem_counter_next;
@@ -98,7 +100,7 @@ module Control_s2(
 
             WAIT: begin
                 if (data_done)
-                    next_state = WRITE;
+                    next_state = IDLE;
                 else
                     next_state = WAIT;
             end

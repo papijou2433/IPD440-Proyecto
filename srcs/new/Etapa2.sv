@@ -1,6 +1,6 @@
 module etapa2(
     input logic clk, reset,
-    input logic data_done,
+    //Aawinput logic data_done,
     input logic[16:0] BRAM_input,
 
     //Lógica de control
@@ -12,7 +12,7 @@ module etapa2(
     output logic[7:0] read_addr,
 
     //Salida final del sistema?(se implementa Fc care palo aca nomas?)
-    output logic signed [34:0] s2_Out[143:0]
+    output logic signed [35:0] s2_Out[143:0]
 );
     localparam Filter_WIDTH = 17;
             //-----------Control-----------\\
@@ -22,11 +22,13 @@ module etapa2(
     logic data_ready;
     logic[1:0] proc_dir;
     logic[5:0] proc_counter;
-    Control_s2 
-    data_builder_Control
+    
+    
+    
+    Control_s2 data_builder_Control 
     (
         .clk(clk),
-        .rst(rst),
+        .reset(reset),
         .data_done(data_done),
 
         .busy(busy),
@@ -38,11 +40,10 @@ module etapa2(
         .cha_addr(cha_addr)
     );
 
-    Conv_FSM_s2
-    processing_Control
+    Control_FSM_s2  processing_Control
     (
         .clk(clk),
-        .rst(rst),
+        .reset(rst),
         .data_rdy(data_ready),
 
         .data_done(data_done),
@@ -79,7 +80,7 @@ module etapa2(
         .Out(Filtro_mux)
     );
             //-----------Procesamiento-----------\\
-    logic signed[17:0] input_tensor[7:0][7:0][2:0];
+    logic signed[16:0] input_tensor[7:0][7:0][2:0];
     assign out_addr = {proc_dir,proc_counter};
     tensor_builder#(.WIDTH(17))
     tensor  
@@ -90,7 +91,7 @@ module etapa2(
         .data_in({1'b0,BRAM_input}),
         .tensor(input_tensor)
     );
-    s2_tensor_procesing
+    s2_tensor_procesing s2tensonr_inst
     (
         .proc_dir(proc_dir),
         .proc_counter(proc_counter),
