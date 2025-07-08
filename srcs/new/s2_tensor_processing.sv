@@ -68,7 +68,7 @@ add_Bias bias_inst
     .Bias_res(Bias_res)
 );
 
-
+logic signed [35:0] relu_out; // intermediate signal
 ReLu#
 (
     .WIDTH(35)
@@ -76,9 +76,11 @@ ReLu#
 Relu_s2
 (
     .in(Bias_res),
-    .Out(output_res[out_addr])
+    .Out(relu_out)
 );
 
-
+always_comb begin
+    output_res[out_addr] = relu_out;
+end
 
 endmodule

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="etapa2_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="etapa2_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="280.401 ns"></ZoomEndTime>
+      <Cursor1Time time="41.600 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="330"></NameColumnWidth>
+      <ValueColumnWidth column_width="96"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/etapa2_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/data_done" type="logic">
+      <obj_property name="ElementShortName">data_done</obj_property>
+      <obj_property name="ObjectShortName">data_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/BRAM_input" type="array">
+      <obj_property name="ElementShortName">BRAM_input[16:0]</obj_property>
+      <obj_property name="ObjectShortName">BRAM_input[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/busy" type="logic">
+      <obj_property name="ElementShortName">busy</obj_property>
+      <obj_property name="ObjectShortName">busy</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/enable_read" type="logic">
+      <obj_property name="ElementShortName">enable_read</obj_property>
+      <obj_property name="ObjectShortName">enable_read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/read_addr" type="array">
+      <obj_property name="ElementShortName">read_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">read_addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/s2_Out" type="array">
+      <obj_property name="ElementShortName">s2_Out[143:0][35:0]</obj_property>
+      <obj_property name="ObjectShortName">s2_Out[143:0][35:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/dina" type="logic">
+      <obj_property name="ElementShortName">dina</obj_property>
+      <obj_property name="ObjectShortName">dina</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor" type="array">
+      <obj_property name="ElementShortName">input_tensor[7:0][7:0][2:0][16:0]</obj_property>
+      <obj_property name="ObjectShortName">input_tensor[7:0][7:0][2:0][16:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[7]" type="array">
+         <obj_property name="ElementShortName">[7][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[6]" type="array">
+         <obj_property name="ElementShortName">[6][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[5]" type="array">
+         <obj_property name="ElementShortName">[5][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[4]" type="array">
+         <obj_property name="ElementShortName">[4][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[3]" type="array">
+         <obj_property name="ElementShortName">[3][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[2]" type="array">
+         <obj_property name="ElementShortName">[2][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[1]" type="array">
+         <obj_property name="ElementShortName">[1][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][7:0][2:0][16:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/etapa2_tb/etapa2_inst/input_tensor[0]" type="array">
+         <obj_property name="ElementShortName">[0][7:0][2:0][16:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][7:0][2:0][16:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/Filtro_mux" type="array">
+      <obj_property name="ElementShortName">Filtro_mux[2:0][2:0][2:0][16:0]</obj_property>
+      <obj_property name="ObjectShortName">Filtro_mux[2:0][2:0][2:0][16:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/your_instance_name/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory" type="array">
+      <obj_property name="ElementShortName">memory[0:191][16:0]</obj_property>
+      <obj_property name="ObjectShortName">memory[0:191][16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/data_builder_Control/state" type="array">
+      <obj_property name="ElementShortName">state[31:0]</obj_property>
+      <obj_property name="ObjectShortName">state[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/read_addr" type="array">
+      <obj_property name="ElementShortName">read_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">read_addr[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/proc_counter" type="array">
+      <obj_property name="ElementShortName">proc_counter[5:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_counter[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/etapa2_tb/etapa2_inst/proc_dir" type="array">
+      <obj_property name="ElementShortName">proc_dir[1:0]</obj_property>
+      <obj_property name="ObjectShortName">proc_dir[1:0]</obj_property>
+   </wvobject>
+</wave_config>

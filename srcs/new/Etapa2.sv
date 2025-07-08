@@ -84,7 +84,9 @@ module etapa2(
     assign out_addr = {proc_dir,proc_counter};
     tensor_builder#(.WIDTH(17))
     tensor  
-    (
+    (   
+        .clk(clk),                                                  
+        .rst(reset),
         .row_addr(row_addr),
         .col_addr(col_addr),
         .cha_addr(cha_addr),
