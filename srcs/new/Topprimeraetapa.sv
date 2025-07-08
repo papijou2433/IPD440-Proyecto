@@ -30,7 +30,6 @@ module Topprimeraetapa(
     );
 
 
-	logic [7:0]    tx_data; 
 	logic [7:0]    rx_data; 
 	logic [1:0]    reset_sr;
 	logic resetd;
@@ -52,8 +51,8 @@ module Topprimeraetapa(
         .reset      (resetd),
         .PB         (),
         .SW         (),
-        .tx_data    (tx_data),
-        .tx_start   (tx_start),
+        .tx_data    ({6'd0,max_result_index}),
+        .tx_start   (max_index_changed_pulse),
         .stateID    ()
         );
 
@@ -68,8 +67,8 @@ module Topprimeraetapa(
         .rx_data      (rx_data),
         .rx_ready     (rx_ready),
         .tx           (uart_tx),
-        .tx_start     (tx_start),
-        .tx_data      (tx_data),
+        .tx_start     (max_index_changed_pulse),
+        .tx_data      ({6'd0,max_result_index}),
         .tx_busy      (tx_busy)
     );
     
@@ -391,8 +390,15 @@ BRAMB bramb (
 
 logic signed[34:0] s2_Out[143:0];
 
-
-
+logic [1:0] max_result_index;
+logic max_index_changed_pulse;
+ etapa3 neuron(
+    .clk(clk),
+    .reset(reset),
+    .s2_Out(s2_Out),
+    .max_result_index(max_result_index),
+   .max_index_changed_pulse(max_index_changed_pulse)
+    );
 
 
 endmodule
