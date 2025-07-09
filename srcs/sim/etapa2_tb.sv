@@ -43,7 +43,7 @@ BRAMB your_instance_name (
   logic busy;
   logic enable_read;
   logic [7:0] read_addr;
-  logic [35:0] s2_Out[143:0];
+  logic [34:0] s2_Out[143:0];
 
   etapa2  etapa2_inst (
     .clk(clk),

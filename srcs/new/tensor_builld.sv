@@ -11,12 +11,12 @@ module tensor_builder#
     input logic[1:0] cha_addr,  //3 canales
     input logic[WIDTH-1:0] data_in,
 
-    output logic signed [WIDTH-1:0] tensor[7:0][7:0][2:0] //8 filas, 8 columnas, 3 canales
+    output logic signed [WIDTH-1:0] tensor[2:0][7:0][7:0] //3 canales, 8 filas, 8 columnas
     );
     always_ff@(posedge clk) 
         if(rst)
             foreach(tensor[i,j,k])
                 tensor[i][j][k]    <= '0;
         else    
-            tensor[row_addr][col_addr][cha_addr]  <= data_in;  
+            tensor[cha_addr][col_addr][row_addr]  <= data_in;  
 endmodule

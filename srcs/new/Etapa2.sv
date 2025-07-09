@@ -83,7 +83,7 @@ module etapa2(
         .Out(Filtro_mux)
     );
             //-----------Procesamiento-----------\\
-    logic signed[16:0] input_tensor[7:0][7:0][2:0];
+    logic signed[16:0] input_tensor[2:0][7:0][7:0];
     assign out_addr = {proc_dir,proc_counter};
     tensor_builder#(.WIDTH(17))
     tensor  
@@ -98,6 +98,8 @@ module etapa2(
     );
     s2_tensor_procesing s2tensonr_inst
     (
+        .clk(clk),
+        .reset(reset),
         .proc_dir(proc_dir),
         .proc_counter(proc_counter),
         .Filter(Filtro_mux),

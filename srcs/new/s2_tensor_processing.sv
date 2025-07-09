@@ -1,8 +1,13 @@
+
+
+
 module s2_tensor_procesing(
+    input logic clk,
+    input logic reset,
     input logic[1:0] proc_dir, // Filtro a usar
     input logic[5:0] proc_counter, // {Fila,Columna}
     input logic signed [16:0] Filter[2:0][2:0][2:0], 
-    input logic signed [16:0] input_tensor[7:0][7:0][2:0],
+    input logic signed [16:0] input_tensor[2:0][7:0][7:0],
     output logic signed [34:0] output_res[143:0]
 );
 //1. Obtener matriz 3x3
@@ -27,20 +32,20 @@ generate
         for(i=0;i<3;i++) //fila
             for(j=0;j<3;j++) //columna
             always_comb begin
-                matrix[i][j][k] = input_tensor[row_dir+i][col_dir+j][k];
+                matrix[i][j][k] = input_tensor[k][col_dir+j][row_dir+i];
             end
 endgenerate
 
-generate
-    for(k=0;k<3;k++)
-        for(i=0;i<3;i++)
-            for(j=0;j<3;j++)
+generate//para modificar que es cada cosa, canal vale = 9, fila = 3, col = 1
+    for(k=0;k<3;k++) //canal 
+        for(i=0;i<3;i++) //fila
+            for(j=0;j<3;j++) //ficol
                 mult#
                 (.IWIDTH(17),.OWIDTH(34))
                 mult_s2_instance 
                 (
-                    .A(Filter[i][j][k]),
-                    .B(matrix[i][j][k]),
+                    .A(Filter[k][j][i]),
+                    .B(matrix[k][j][i]),
                     .Out(mult_res[k*9+3*i+j])
                 );
 endgenerate
@@ -79,10 +84,12 @@ Relu_s2
     .Out(relu_out)
 );
 
-always_comb begin
-    foreach(output_res[i])
-        output_res[i] = 35'd0;
-    output_res[out_addr] = relu_out;
-end
 
+always_ff@(posedge clk) begin
+    if(reset)
+        foreach(output_res[i])
+            output_res[i]   <= 0;
+    else    
+        output_res[out_addr]<= relu_out;
+end
 endmodule
