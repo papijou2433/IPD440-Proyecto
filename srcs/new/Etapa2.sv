@@ -104,4 +104,6 @@ module etapa2(
         .input_tensor(input_tensor),
         .output_res(s2_Out)
     );
+
+    
 endmodule

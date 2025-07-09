@@ -41,7 +41,7 @@ module Topprimeraetapa(
 
     assign uart_tx_usb = uart_tx;
     assign uart_tx_busy = tx_busy;
-
+    logic [7:0] tx_data;
     UART_tx_control_wrapper 
     #(  .INTER_BYTE_DELAY (100_000),
         .WAIT_FOR_REGISTER_DELAY (100)
@@ -49,10 +49,10 @@ module Topprimeraetapa(
         ) UART_control_inst (
         .clock      (clk),
         .reset      (resetd),
-        .PB         (),
-        .SW         (),
-        .tx_data    ({6'd0,max_result_index}),
-        .tx_start   (max_index_changed_pulse),
+        .PB         (max_index_changed_pulse),
+        .SW         ({14'd0,max_result_index}),
+        .tx_data    (tx_data),
+        .tx_start   (),
         .stateID    ()
         );
 
@@ -67,8 +67,8 @@ module Topprimeraetapa(
         .rx_data      (rx_data),
         .rx_ready     (rx_ready),
         .tx           (uart_tx),
-        .tx_start     (max_index_changed_pulse),
-        .tx_data      ({6'd0,max_result_index}),
+        .tx_start     (),
+        .tx_data      (tx_data),
         .tx_busy      (tx_busy)
     );
     
@@ -191,10 +191,11 @@ blk_mem_gen_0 BramA (
   //////////////////////////////////////////////////////////////////////////////////////////////////////  //////////////////////////////////////////////////////////////////////////////////////////////////////
 // Control unit y actualizacion de tensor de entrada
 
+  logic busy;
   control_unit  control_unit_inst (
     .clk(clk),
     .reset(reset),
-    .busy(0),
+    .busy(busy),
     .data_done(data_done),
     
     .enable_a(enable_a),
@@ -224,13 +225,14 @@ Conv_1_FSM  Conv_1_FSM_inst (
     .reset(reset),
     .data_rdy(data_rdy),
     .input_tensor(input_tensor),
+    .enb(enb),
     .dir(dir),
     .dir_counter(dir_counter),
     .data_done(data_done),
     .out_matrix(out_matrix)
   );
 
-  
+  logic enb;
 
 
 
@@ -245,15 +247,23 @@ logic signed [16:0] resultado;                // Declare as signed
 logic signed [16:0] temp_sum,temp_sumbias;              // Temporary signed variable for accumulation
 logic signed [16:0] Adder_tree_result;
 // Proper signed accumulation
-logic [15:0] bias [2:0];
-
+logic [16:0] bias [2:0];
+logic [16:0] bias_mux;
 
 always_comb begin 
-    bias[0]=16'hA9BD;
-    bias[1]=16'h0DF5;
-    bias[2]=16'hD70A;
+    bias[0]=16'h38EC;
+    bias[1]=16'h7FD;
+    bias[2]=16'hB687;
 end
 
+always_comb begin 
+    case (dir)
+        2'd0: bias_mux = bias[0];
+        2'd1: bias_mux = bias[1];
+        2'd2: bias_mux = bias[2];
+        default: bias_mux = 17'd0;
+    endcase
+end
 // 4 etapas de sumadores
 // Revisar si es que está pescando bien la suma del último dato
 
@@ -267,11 +277,15 @@ adder_tree#(
     .d(sumandos_resultado),
     .q(Adder_tree_result)
     );
+    
+logic signed [16:0] Adder_tree_resultbias;
+
+assign Adder_tree_resultbias=Adder_tree_result + bias_mux; // Add bias to the result
 ReLu #(
     .WIDTH(17)
     )
     Relu_inst(
-        .in(Adder_tree_result),
+        .in(Adder_tree_resultbias),
         .Out(resultado)
     );
 
@@ -287,39 +301,39 @@ logic [7:0] filtro_mux [2:0] [2:0];
 
 
 always_comb begin 
-    filtro1[2][2]=8'h2D;
-    filtro1[2][1]=8'h43;
-    filtro1[2][0]=8'h53;
-    filtro1[1][2]=8'h55;
-    filtro1[1][1]=8'h4C;
-    filtro1[1][0]=8'h62;
-    filtro1[0][2]=8'h3C;
-    filtro1[0][1]=8'h1D;
-    filtro1[0][0]=8'h4F;
+    filtro1[2][2]=8'hC9;
+    filtro1[2][1]=8'h13;
+    filtro1[2][0]=8'hB7;
+    filtro1[1][2]=8'hE3;
+    filtro1[1][1]=8'hE9;
+    filtro1[1][0]=8'h94;
+    filtro1[0][2]=8'h18;
+    filtro1[0][1]=8'h0B;
+    filtro1[0][0]=8'hA3;
 end
 
 always_comb begin 
-    filtro2[2][2]=8'h2C;
-    filtro2[2][1]=8'h27;
-    filtro2[2][0]=8'hED;
-    filtro2[1][2]=8'h2E;
-    filtro2[1][1]=8'hE7;
-    filtro2[1][0]=8'hB4;
-    filtro2[0][2]=8'h1B;
-    filtro2[0][1]=8'hFB;
-    filtro2[0][0]=8'hB3;
+    filtro2[2][2]=8'hF7;
+    filtro2[2][1]=8'hBE;
+    filtro2[2][0]=8'hBC;
+    filtro2[1][2]=8'h00;
+    filtro2[1][1]=8'hEA;
+    filtro2[1][0]=8'hCE;
+    filtro2[0][2]=8'h29;
+    filtro2[0][1]=8'h4D;
+    filtro2[0][0]=8'h32;
 end
 
 always_comb begin 
-    filtro3[2][2]=8'h49;
-    filtro3[2][1]=8'hF1;
-    filtro3[2][0]=8'h02;
-    filtro3[1][2]=8'h38;
-    filtro3[1][1]=8'h37;
-    filtro3[1][0]=8'h2D;
-    filtro3[0][2]=8'h47;
-    filtro3[0][1]=8'h3D;
-    filtro3[0][0]=8'h3E;
+    filtro3[2][2]=8'h42;
+    filtro3[2][1]=8'h32;
+    filtro3[2][0]=8'h43;
+    filtro3[1][2]=8'hF1;
+    filtro3[1][1]=8'h0E;
+    filtro3[1][0]=8'h69;
+    filtro3[0][2]=8'h48;
+    filtro3[0][1]=8'h57;
+    filtro3[0][0]=8'h63;
 end
 
 
@@ -362,11 +376,23 @@ endgenerate
 
 assign dir_B={dir[1:0],dir_counter};
 
+logic [7:0] dir_B_buff, dir_B_buff_next;
+logic [16:0] resultado_buff;
+always_ff @(posedge clk) begin
+    if (reset) begin
+        dir_B_buff <= 0;
+        resultado_buff <= 0;
+    end else begin
+        dir_B_buff <= dir_B;
+        resultado_buff <= resultado;
+    end
+end
+
 BRAMB bramb (
 .clka(clk),    // input wire clka
-.wea(1),      // input wire [0 : 0] wea
-.addra(dir_B),  // input wire [7 : 0] addra
-.dina(resultado),    // input wire [19 : 0] dina
+.wea(enb),      // input wire [0 : 0] wea
+.addra(dir_B_buff),  // input wire [7 : 0] addra
+.dina(resultado_buff),    // input wire [19 : 0] dina
 .clkb(clk),    // input wire clkb
 .enb(1),      // input wire enb
 .addrb(read_addr),  // input wire [7 : 0] addrb
@@ -374,12 +400,15 @@ BRAMB bramb (
 );
 
 
-
+logic [16:0] BRAM_input;
+logic [7:0] read_addr;
+logic signed[34:0] s2_Out[143:0];
 
  etapa2  etapa2_inst (
     .clk(clk),
     .reset(reset),
     .BRAM_input(BRAM_input),
+    .data_done(data_done),
     .busy(busy),
     .enable_read(enable_read),
     .read_addr(read_addr),
@@ -387,8 +416,6 @@ BRAMB bramb (
   );
 
 
-
-logic signed[34:0] s2_Out[143:0];
 
 logic [1:0] max_result_index;
 logic max_index_changed_pulse;

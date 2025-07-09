@@ -27,6 +27,7 @@ module Conv_1_FSM(
     output logic [1:0] dir,
     output logic [5:0] dir_counter,
     output logic data_done,
+    output logic enb,
     output logic [7:0] out_matrix [0:2] [0:2]
     );
     typedef enum logic [2:0] {
@@ -103,6 +104,7 @@ module Conv_1_FSM(
 
     //bloque de salidas
     always_comb begin
+        enb=0;
         case(state) 
             IDLE: begin
                 data_done=0;
@@ -112,21 +114,25 @@ module Conv_1_FSM(
             MULT_ONE: begin
                 data_done=0;
                 dir=0;
+                enb=1;
                 dir_counter_next=dir_counter+1;
             end
             MULT_TWO: begin
                 data_done=0;
                 dir=1;
+                enb=1;
                 dir_counter_next=dir_counter+1;
             end
             MULT_THREE: begin
                 data_done=0;
                 dir=2;
+                enb=1;
                 dir_counter_next=dir_counter+1;
             end
             DONE: begin
                 data_done=1;
                 dir=0;
+                enb=1;
                 dir_counter_next=0;
             end
             default:

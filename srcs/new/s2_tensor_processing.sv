@@ -3,7 +3,7 @@ module s2_tensor_procesing(
     input logic[5:0] proc_counter, // {Fila,Columna}
     input logic signed [16:0] Filter[2:0][2:0][2:0], 
     input logic signed [16:0] input_tensor[7:0][7:0][2:0],
-    output logic signed [35:0] output_res[143:0]
+    output logic signed [34:0] output_res[143:0]
 );
 //1. Obtener matriz 3x3
 //2. multiplicar según filtro
@@ -15,7 +15,7 @@ logic signed [16:0] matrix[2:0][2:0][2:0];
 logic[1:0]  row_dir,col_dir,cha_dir;
 logic signed [33:0] mult_res[26:0]; // matrix 3x3 por 3 canales, all se sumam en adder tree
 logic signed [33:0] adder_res;
-logic signed [35:0] Bias_res,Bias;
+logic signed [34:0] Bias_res,Bias;
 logic[7:0] out_addr;
 assign row_dir = proc_counter[3:2];
 assign col_dir = proc_counter[1:0];
@@ -68,10 +68,10 @@ add_Bias bias_inst
     .Bias_res(Bias_res)
 );
 
-logic signed [35:0] relu_out; // intermediate signal
+logic signed [34:0] relu_out; // intermediate signal
 ReLu#
 (
-    .WIDTH(36)
+    .WIDTH(35)
 )
 Relu_s2
 (
