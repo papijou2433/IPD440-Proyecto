@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,750.167 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,899.168 ns"></ZoomEndTime>
-      <Cursor1Time time="1,845.867 ns"></Cursor1Time>
+      <ZoomStartTime time="4,613.567 ns"></ZoomStartTime>
+      <ZoomEndTime time="4,682.168 ns"></ZoomEndTime>
+      <Cursor1Time time="4,625.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="179"></NameColumnWidth>
       <ValueColumnWidth column_width="159"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="20" />
+   <WVObjectSize size="22" />
    <wvobject fp_name="/System_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -607,7 +607,6 @@
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">15</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/bramb/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory[0]" type="array">
             <obj_property name="ElementShortName">[0][16:0]</obj_property>
             <obj_property name="ObjectShortName">[0][16:0]</obj_property>
@@ -2169,6 +2168,7 @@
    <wvobject fp_name="group17" type="group">
       <obj_property name="label">Convfsm1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/System_tb/Topprimeraetapa_inst/Conv_1_FSM_inst/input_tensor" type="array">
          <obj_property name="ElementShortName">input_tensor[0:7][0:7][7:0]</obj_property>
          <obj_property name="ObjectShortName">input_tensor[0:7][0:7][7:0]</obj_property>
@@ -2372,6 +2372,31 @@
          <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
          <obj_property name="radix_fractionWidth">15</obj_property>
          <obj_property name="radix_otherWidth">0</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject fp_name="/System_tb/Topprimeraetapa_inst/bias[2]" type="array">
+            <obj_property name="ElementShortName">[2][16:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][16:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/System_tb/Topprimeraetapa_inst/bias[1]" type="array">
+            <obj_property name="ElementShortName">[1][16:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][16:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
+         <wvobject fp_name="/System_tb/Topprimeraetapa_inst/bias[0]" type="array">
+            <obj_property name="ElementShortName">[0][16:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][16:0]</obj_property>
+            <obj_property name="Radix">REALRADIX</obj_property>
+            <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+            <obj_property name="radix_fractionWidth">15</obj_property>
+            <obj_property name="radix_otherWidth">0</obj_property>
+         </wvobject>
       </wvobject>
       <wvobject fp_name="group484" type="group">
          <obj_property name="label">Filtros</obj_property>
@@ -2528,6 +2553,7 @@
       <wvobject fp_name="group843" type="group">
          <obj_property name="label">mult0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/\row[0].col[0].mult_inst /A" type="array">
             <obj_property name="ElementShortName">A[7:0]</obj_property>
             <obj_property name="ObjectShortName">A[7:0]</obj_property>
@@ -3321,6 +3347,7 @@
    <wvobject fp_name="group1157" type="group">
       <obj_property name="label">mult canal 1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="group1158" type="group">
          <obj_property name="label">mult 0 0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
@@ -3382,6 +3409,7 @@
       <wvobject fp_name="group1181" type="group">
          <obj_property name="label">mult 0 2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[0].genblk1[2].genblk1[0].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3406,13 +3434,14 @@
             <obj_property name="Reversed">false</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">33</obj_property>
+            <obj_property name="radix_fractionWidth">31</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group1159" type="group">
          <obj_property name="label">mult  1 0 </obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[0].genblk1[0].genblk1[1].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3437,13 +3466,14 @@
             <obj_property name="Reversed">false</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">33</obj_property>
+            <obj_property name="radix_fractionWidth">31</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group1179" type="group">
          <obj_property name="label">mult 1 1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[0].genblk1[1].genblk1[1].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3468,7 +3498,7 @@
             <obj_property name="Reversed">false</obj_property>
             <obj_property name="Radix">REALRADIX</obj_property>
             <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-            <obj_property name="radix_fractionWidth">33</obj_property>
+            <obj_property name="radix_fractionWidth">31</obj_property>
             <obj_property name="radix_otherWidth">0</obj_property>
          </wvobject>
       </wvobject>
@@ -3860,7 +3890,6 @@
       <wvobject fp_name="group1784" type="group">
          <obj_property name="label">mult 0 0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[0].genblk1[0].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3889,7 +3918,6 @@
       <wvobject fp_name="group1785" type="group">
          <obj_property name="label">mult 0 1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[1].genblk1[0].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3918,7 +3946,6 @@
       <wvobject fp_name="group1786" type="group">
          <obj_property name="label">mult 0 2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[2].genblk1[0].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3947,7 +3974,6 @@
       <wvobject fp_name="group1799" type="group">
          <obj_property name="label">mult 1 0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[0].genblk1[1].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -3976,7 +4002,6 @@
       <wvobject fp_name="group1800" type="group">
          <obj_property name="label">mult 1 1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[1].genblk1[1].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -4005,7 +4030,6 @@
       <wvobject fp_name="group1801" type="group">
          <obj_property name="label">mult 1 2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[2].genblk1[1].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -4034,7 +4058,6 @@
       <wvobject fp_name="group1802" type="group">
          <obj_property name="label">mult 2 0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[0].genblk1[2].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -4063,7 +4086,6 @@
       <wvobject fp_name="group1806" type="group">
          <obj_property name="label">mult 2 1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[1].genblk1[2].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -4092,7 +4114,6 @@
       <wvobject fp_name="group1810" type="group">
          <obj_property name="label">mult 2 2</obj_property>
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/\genblk2[2].genblk1[2].genblk1[2].mult_s2_instance /A" type="array">
             <obj_property name="ElementShortName">A[16:0]</obj_property>
             <obj_property name="ObjectShortName">A[16:0]</obj_property>
@@ -4122,6 +4143,7 @@
    <wvobject fp_name="group1380" type="group">
       <obj_property name="label">addertree</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/adder_tree_s2/d" type="array">
          <obj_property name="ElementShortName">d[0:26][33:0]</obj_property>
          <obj_property name="ObjectShortName">d[0:26][33:0]</obj_property>
@@ -5033,12 +5055,28 @@
          <obj_property name="radix_otherWidth">0</obj_property>
       </wvobject>
    </wvobject>
+   <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/bias_inst/Bias" type="array">
+      <obj_property name="ElementShortName">Bias[33:0]</obj_property>
+      <obj_property name="ObjectShortName">Bias[33:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">31</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
    <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/adder_res" type="array">
       <obj_property name="ElementShortName">adder_res[34:0]</obj_property>
       <obj_property name="ObjectShortName">adder_res[34:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
-      <obj_property name="radix_fractionWidth">33</obj_property>
+      <obj_property name="radix_fractionWidth">31</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
+   </wvobject>
+   <wvobject fp_name="/System_tb/Topprimeraetapa_inst/etapa2_inst/s2tensonr_inst/Bias_res" type="array">
+      <obj_property name="ElementShortName">Bias_res[34:0]</obj_property>
+      <obj_property name="ObjectShortName">Bias_res[34:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">SIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">31</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
 </wave_config>

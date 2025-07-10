@@ -251,9 +251,9 @@ logic [16:0] bias [2:0];
 logic [16:0] bias_mux;
 
 always_comb begin 
-    bias[0]=16'h38EC;
-    bias[1]=16'h7FD;
-    bias[2]=16'hB687;
+    bias[0]=16'sh38EC;
+    bias[1]=16'sh7FD;
+    bias[2]=16'shB687;
 end
 
 always_comb begin 
@@ -294,46 +294,46 @@ ReLu #(
 
 
 
-logic [7:0] filtro1 [2:0] [2:0];
-logic [7:0] filtro2 [2:0] [2:0];
-logic [7:0] filtro3 [2:0] [2:0];
-logic [7:0] filtro_mux [2:0] [2:0];
+logic signed [7:0] filtro1 [2:0] [2:0];
+logic signed [7:0] filtro2 [2:0] [2:0];
+logic signed [7:0] filtro3 [2:0] [2:0];
+logic signed [7:0] filtro_mux [2:0] [2:0];
 
 
 always_comb begin 
-    filtro1[2][2]=8'hC9;
-    filtro1[2][1]=8'h13;
-    filtro1[2][0]=8'hB7;
-    filtro1[1][2]=8'hE3;
-    filtro1[1][1]=8'hE9;
-    filtro1[1][0]=8'h94;
-    filtro1[0][2]=8'h18;
-    filtro1[0][1]=8'h0B;
-    filtro1[0][0]=8'hA3;
+    filtro1[2][2]=8'shC9;
+    filtro1[2][1]=8'sh13;
+    filtro1[2][0]=8'shB7;
+    filtro1[1][2]=8'shE3;
+    filtro1[1][1]=8'shE9;
+    filtro1[1][0]=8'sh94;
+    filtro1[0][2]=8'sh18;
+    filtro1[0][1]=8'sh0B;
+    filtro1[0][0]=8'shA3;
 end
 
 always_comb begin 
-    filtro2[2][2]=8'hF7;
-    filtro2[2][1]=8'hBE;
-    filtro2[2][0]=8'hBC;
-    filtro2[1][2]=8'h00;
-    filtro2[1][1]=8'hEA;
-    filtro2[1][0]=8'hCE;
-    filtro2[0][2]=8'h29;
-    filtro2[0][1]=8'h4D;
-    filtro2[0][0]=8'h32;
+    filtro2[2][2]=8'shF7;
+    filtro2[2][1]=8'shBE;
+    filtro2[2][0]=8'shBC;
+    filtro2[1][2]=8'sh00;
+    filtro2[1][1]=8'shEA;
+    filtro2[1][0]=8'shCE;
+    filtro2[0][2]=8'sh29;
+    filtro2[0][1]=8'sh4D;
+    filtro2[0][0]=8'sh32;
 end
 
 always_comb begin 
-    filtro3[2][2]=8'h42;
-    filtro3[2][1]=8'h32;
-    filtro3[2][0]=8'h43;
-    filtro3[1][2]=8'hF1;
-    filtro3[1][1]=8'h0E;
-    filtro3[1][0]=8'h69;
-    filtro3[0][2]=8'h48;
-    filtro3[0][1]=8'h57;
-    filtro3[0][0]=8'h63;
+    filtro3[2][2]=8'sh42;
+    filtro3[2][1]=8'sh32;
+    filtro3[2][0]=8'sh43;
+    filtro3[1][2]=8'shF1;
+    filtro3[1][1]=8'sh0E;
+    filtro3[1][0]=8'sh69;
+    filtro3[0][2]=8'sh48;
+    filtro3[0][1]=8'sh57;
+    filtro3[0][0]=8'sh63;
 end
 
 

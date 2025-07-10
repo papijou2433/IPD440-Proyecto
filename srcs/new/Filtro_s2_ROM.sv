@@ -19,7 +19,7 @@ module Filtros_s2_ROM#
     always_comb begin
         // Filtro1[canal][COLUMNA][fila] - Formato Q0.16 (1 bit de signo, 16 bits fraccionales)
     Filtro1 = '{
-  '{ // Canal 0
+  '{ // Canal 2
     '{16'shD72E, 16'shBC5D  , 16'shAC5D }, // Columna 0: Filas 0,1,2
     '{16'shE886, 16'shCD1B, 16'shE109 },
     '{16'sh1AFB , 16'sh089A, 16'sh13DE}
@@ -29,7 +29,7 @@ module Filtros_s2_ROM#
     '{16'shF7C8, 16'shFA20,16'sh3CB6  },
     '{ 16'sh21B7,  16'sh1E66,  16'sh515B}
   },
-  '{ // Canal 2
+  '{ // Canal 0
     '{16'sh3003, 16'sh450 ,  16'sh5216}, // Columna 0: Filas 0,1,2
     '{16'shF886, 16'sh1330,16'sh1EA1  },
     '{ 16'sh3791,  16'sh3B82,  16'sh3E49}
@@ -37,7 +37,7 @@ module Filtros_s2_ROM#
 };
 
     Filtro2 = '{
-  '{ // Fila 0
+  '{ // Fila 2
     '{17'sb0100101001110101, 17'sb1110010100000111, 17'sb1111110111011000},
     '{17'sb0011001000011100, 17'sb1111011110111110, 17'sb0001001100011000},
     '{17'sb0011111101101100, 17'sb1110101100111010, 17'sb0010010000011101}
@@ -47,7 +47,7 @@ module Filtros_s2_ROM#
     '{17'sb0011011000110101, 17'sb1111101100100110, 17'sb0011111110011000},
     '{17'sb0001111011000011, 17'sb1111001100110001, 17'sb0011000011010101}
   },
-  '{ // Fila 2
+  '{ // Fila 0
     '{16'sh145A, 16'sh1883 ,  16'sh00}, // Columna 0: Filas 0,1,2
     '{16'shF7C8, 16'shFA20,16'sh3CB6  },
     '{ 16'sh21B7,  16'sh1E66,  16'sh515B}
