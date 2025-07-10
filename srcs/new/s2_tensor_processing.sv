@@ -32,7 +32,7 @@ generate
         for(i=0;i<3;i++) //fila
             for(j=0;j<3;j++) //columna
             always_comb begin
-                matrix[k][i][j] = input_tensor[k][col_dir+j][row_dir+i];
+                matrix[k][j][i] = input_tensor[k][col_dir+j][row_dir+i];
             end
 endgenerate
 

@@ -20,19 +20,19 @@ module Filtros_s2_ROM#
         // Filtro1[canal][COLUMNA][fila] - Formato Q0.16 (1 bit de signo, 16 bits fraccionales)
     Filtro1 = '{
   '{ // Canal 2
-    '{16'shD72E, 16'shBC5D  , 16'shAC5D }, // Columna 0: Filas 0,1,2
+    '{16'shD72E, 16'shBC5D, 16'shAC5D }, // Columna 0: Filas 0,1,2
     '{16'shE886, 16'shCD1B, 16'shE109 },
-    '{16'sh1AFB , 16'sh089A, 16'sh13DE}
+    '{16'sh1AFB, 16'sh089A, 16'sh13DE}
   },
   '{ // Canal 1
-    '{16'sh145A, 16'sh1883 ,  16'sh00}, // Columna 0: Filas 0,1,2
-    '{16'shF7C8, 16'shFA20,16'sh3CB6  },
-    '{ 16'sh21B7,  16'sh1E66,  16'sh515B}
+    '{16'sh145A, 16'sh1883,  16'sh00}, // Columna 0: Filas 0,1,2
+    '{16'shF7C8, 16'shFA20,  16'sh3CB6  },
+    '{16'sh21B7, 16'sh1E66,  16'sh515B}
   },
   '{ // Canal 0
     '{16'sh3003, 16'sh450 ,  16'sh5216}, // Columna 0: Filas 0,1,2
-    '{16'shF886, 16'sh1330,16'sh1EA1  },
-    '{ 16'sh3791,  16'sh3B82,  16'sh3E49}
+    '{16'shF886, 16'sh1330,  16'sh1EA1  },
+    '{16'sh3791, 16'sh3B82,  16'sh3E49}
   }
 };
 
