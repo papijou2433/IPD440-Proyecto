@@ -19,7 +19,7 @@ module s2_tensor_procesing(
 logic signed [16:0] matrix[2:0][2:0][2:0];
 logic[1:0]  row_dir,col_dir,cha_dir;
 logic signed [33:0] mult_res[26:0]; // matrix 3x3 por 3 canales, all se sumam en adder tree
-logic signed [33:0] adder_res;
+logic signed [34:0] adder_res;
 logic signed [34:0] Bias_res,Bias;
 logic[7:0] out_addr;
 assign row_dir = proc_counter[3:2];
@@ -32,7 +32,7 @@ generate
         for(i=0;i<3;i++) //fila
             for(j=0;j<3;j++) //columna
             always_comb begin
-                matrix[i][j][k] = input_tensor[k][col_dir+j][row_dir+i];
+                matrix[k][i][j] = input_tensor[k][col_dir+j][row_dir+i];
             end
 endgenerate
 
@@ -61,7 +61,7 @@ always_comb begin
     endcase
 end
 adder_tree#
-(.NINPUTS(27),.IWIDTH(34),.OWIDTH(34))
+(.NINPUTS(27),.IWIDTH(34),.OWIDTH(35))
 adder_tree_s2(
     .d(mult_res),
     .q(adder_res)
